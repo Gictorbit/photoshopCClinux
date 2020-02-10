@@ -1,19 +1,32 @@
 #!/usr/bin/env bash
 
 function main(){
-    mkdir -p $HOME/.photoshopCCV19
-    mkdir -p $HOME/.cache/photoshopCCV19
+    
+    SCR_PATH="$HOME/.photoshopCCV19"
+    CACHE_PATH="$HOME/.cache/photoshopCCV19"
+    
+    mkdir -p $SCR_PATH
+    mkdir -p $CACHE_PATH
+    
     setup_log "================| script executed |================"
+    
     check_arg $1
     is64
+
+    #make sure aria2c and wine package is already installed 
     package_installed aria2c
     package_installed wine
-   
+    
+    #delete wine3.4 dir if exist then create it
+    WINE_PATH="$SCR_PATH/wine-3.4"
+    rmdir_if_exist $WINE_PATH
 
+    RESOURCES_PATH="$SCR_PATH/resources"
+    echo "$RESOURCES_PATH"
 }
 
 function setup_log(){
-    echo -e "$(date) : $@" >> $HOME/.photoshopCCV19/setuplog.log
+    echo -e "$(date) : $@" >> $SCR_PATH/setuplog.log
 }
 
 function show_message(){
@@ -30,6 +43,15 @@ function error(){
 function warning(){
     echo -e "\033[1;33mWarning:\e[0m $@"
     setup_log "$@"
+}
+
+function rmdir_if_exist(){
+    if [ -d "$1" ];then
+        rm -rf $1
+        show_message "\033[0;36m$1\e[0m directory exists deleting it..."
+    fi
+    mkdir $1
+    show_message "create\033[0;36m $1\e[0m directory..."
 }
 
 function check_arg(){
