@@ -16,15 +16,19 @@ function main(){
     #make sure aria2c and wine package is already installed 
     package_installed aria2c
     package_installed wine
-    
+    package_installed md5sum
+
     #delete wine3.4 dir if exist then create it
     WINE_PATH="$SCR_PATH/wine-3.4"
     rmdir_if_exist $WINE_PATH
 
     RESOURCES_PATH="$SCR_PATH/resources"
+    WINE_PREFIX="$SCR_PATH/prefix"
     
-    install_wine34 
+    #install wine 3.4
+    install_wine34
 
+    rmdir_if_exist $WINE_PREFIX 
 }
 
 function setup_log(){
@@ -54,6 +58,7 @@ function install_wine34(){
     local filelink="http://bit.ly/2Sh9idu"
     download_component $filepath $filemd5 $filelink $filename 
     tar -xzvf $filepath -C $WINE_PATH 1>/dev/null
+    show_message "wine 3.4 installed..."
 }
 
 #parameters is [PATH] [CheckSum] [URL] [FILE NAME]
