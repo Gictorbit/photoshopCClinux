@@ -54,7 +54,9 @@ main(){
     else
         error "user.reg Not Found :("
     fi
-
+   
+    #create resources directory 
+    rmdir_if_exist $RESOURCES_PATH
 }
 
 function setup_log(){
