@@ -23,6 +23,13 @@ function main(){
 
     RESOURCES_PATH="$SCR_PATH/resources"
     echo "$RESOURCES_PATH"
+
+    pathfile="$CACHE_PATH/fuck.jpg" 
+    md5="b71c05c238f2cdb979e650ecb1d62bba" 
+    link="https://www.dropbox.com/s/61hn7c9oezw0k75/salamKhoviefuckthisshit.jpg?dl=1" 
+    filename="fuck.jpg"
+    download_component $pathfile $md5 $link $filename 
+
 }
 
 function setup_log(){
@@ -43,6 +50,30 @@ function error(){
 function warning(){
     echo -e "\033[1;33mWarning:\e[0m $@"
     setup_log "$@"
+}
+
+#parameters is [PATH] [CheckSum] [URL] [FILE NAME]
+function download_component(){
+    local tout=0
+    while true;do
+        if [ $tout -ge 2 ];then
+            error "sorry somthing went wrong"
+        fi
+        if [ -f $1 ];then
+            local FILE_ID=$(md5sum $1 | cut -d" " -f1)
+            if [ "$FILE_ID" == $2 ];then
+                show_message "\033[1;36m$4\e[0m is detected"
+                return 1
+            else
+                show_message "md5 is not match"
+                rm $1 
+            fi
+        else   
+            show_message "downloading $4"
+            aria2c -c -x 8 -d $CACHE_PATH -o $4 $3
+            ((tout++))
+        fi
+    done    
 }
 
 function rmdir_if_exist(){
