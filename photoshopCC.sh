@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-function main(){
+main(){
     
     SCR_PATH="$HOME/.photoshopCCV19"
     CACHE_PATH="$HOME/.cache/photoshopCCV19"
@@ -37,9 +37,10 @@ function main(){
     #config wine prefix and install mono and gecko automatic
     echo -e "\033[1;93mplease allow mono and gecko packages to be installed automatically\e[0m"
     echo -e "\033[1;93mif they're not already installed then click on OK button\e[0m"
-    winecfg 2>/dev/null
+    winecfg 2> "$SCR_PATH/wine-error.log"
     show_message "prefix configured..."
-
+    sleep 5
+    append_DLL
 }
 
 function setup_log(){
@@ -60,6 +61,45 @@ function error(){
 function warning(){
     echo -e "\033[1;33mWarning:\e[0m $@"
     setup_log "$@"
+}
+
+append_DLL(){ 
+    dllarray=(
+        '[Software\\Wine\\DllOverrides] 1580889458'
+        '#time=1d5dbf9ef00b116'
+        '"*atl110"="native,builtin"'
+        '"*atl120"="native,builtin"'
+        '"*msvcp110"="native,builtin"'
+        '"*msvcp120"="native,builtin"'
+        '"*msvcr100"="native,builtin"'
+        '"*msvcr110"="native,builtin"'
+        '"*msvcr120"="native,builtin"'
+        '"*msvcr90"="native,builtin"'
+        '"*msxml3"="native"'
+        '"*msxml6"="native"'
+        '"*vcomp110"="native,builtin"'
+        '"*vcomp120"="native,builtin"'
+        '"atl110"="native,builtin"'
+        '"atl80"="native,builtin"'
+        '"atl90"="native,builtin"'
+        '"msvcp100"="native,builtin"'
+        '"msvcp110"="native,builtin"'
+        '"msvcp120"="native,builtin"'
+        '"msvcr100"="native,builtin"'
+        '"msvcr110"="native,builtin"'
+        '"msvcr120"="native,builtin"'
+        '"msvcr90"="native,builtin"'
+        '"msxml3"="native,builtin"'
+        '"msxml6"="native,builtin"'
+        '"vcomp110"="native,builtin"'
+        '"vcomp120"="native,builtin"' 
+    )
+    show_message "adding necessary DLLs..."
+    echo " " >> "$WINE_PREFIX/user.reg"
+    for i in ${dllarray[@]};do
+        echo "$i" >> "$WINE_PREFIX/user.reg"
+    done
+    sleep 4
 }
 
 export_var(){
