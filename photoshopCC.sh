@@ -40,7 +40,14 @@ main(){
     winecfg 2> "$SCR_PATH/wine-error.log"
     show_message "prefix configured..."
     sleep 5
+    
+    #add necessary dlls
     append_DLL
+
+    #add dark mod
+    set_dark_mod
+
+
 }
 
 function setup_log(){
@@ -63,8 +70,52 @@ function warning(){
     setup_log "$@"
 }
 
+set_dark_mod(){
+    echo " " >> "$WINE_PREFIX/user.reg"
+    local colorarray=(
+        '[Control Panel\\Colors] 1491939580'
+        '#time=1d2b2fb5c69191c'
+        '"ActiveBorder"="49 54 58"'
+        '"ActiveTitle"="49 54 58"'
+        '"AppWorkSpace"="60 64 72"'
+        '"Background"="49 54 58"'
+        '"ButtonAlternativeFace"="200 0 0"'
+        '"ButtonDkShadow"="154 154 154"'
+        '"ButtonFace"="49 54 58"'
+        '"ButtonHilight"="119 126 140"'
+        '"ButtonLight"="60 64 72"'
+        '"ButtonShadow"="60 64 72"'
+        '"ButtonText"="219 220 222"'
+        '"GradientActiveTitle"="49 54 58"'
+        '"GradientInactiveTitle"="49 54 58"'
+        '"GrayText"="155 155 155"'
+        '"Hilight"="119 126 140"'
+        '"HilightText"="255 255 255"'
+        '"InactiveBorder"="49 54 58"'
+        '"InactiveTitle"="49 54 58"'
+        '"InactiveTitleText"="219 220 222"'
+        '"InfoText"="159 167 180"'
+        '"InfoWindow"="49 54 58"'
+        '"Menu"="49 54 58"'
+        '"MenuBar"="49 54 58"'
+        '"MenuHilight"="119 126 140"'
+        '"MenuText"="219 220 222"'
+        '"Scrollbar"="73 78 88"'
+        '"TitleText"="219 220 222"'
+        '"Window"="35 38 41"'
+        '"WindowFrame"="49 54 58"'
+        '"WindowText"="219 220 222"'
+    )
+    for i in "${colorarray[@]}";do
+        echo "$i" >> "$WINE_PREFIX/user.reg"
+    done
+    show_message "set dark mode for wine..." 
+    sleep 3
+    unset colorarray
+}
+
 append_DLL(){ 
-    dllarray=(
+    local dllarray=(
         '[Software\\Wine\\DllOverrides] 1580889458'
         '#time=1d5dbf9ef00b116'
         '"*atl110"="native,builtin"'
