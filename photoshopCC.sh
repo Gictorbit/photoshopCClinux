@@ -38,15 +38,22 @@ main(){
     echo -e "\033[1;93mplease allow mono and gecko packages to be installed automatically\e[0m"
     echo -e "\033[1;93mif they're not already installed then click on OK button\e[0m"
     winecfg 2> "$SCR_PATH/wine-error.log"
-    show_message "prefix configured..."
-    sleep 5
+    if [ $? -eq 0 ];then
+        show_message "prefix configured..."
+        sleep 5
+    else
+        error "prefix config failed :("
+    fi
     
-    #add necessary dlls
-    append_DLL
-
-    #add dark mod
-    set_dark_mod
-
+    if [ -f "$WINE_PREFIX/user.reg" ];then
+        #add necessary dlls
+        append_DLL
+        sleep 4
+        #add dark mod
+        set_dark_mod
+    else
+        error "user.reg Not Found :("
+    fi
 
 }
 
@@ -110,7 +117,6 @@ set_dark_mod(){
         echo "$i" >> "$WINE_PREFIX/user.reg"
     done
     show_message "set dark mode for wine..." 
-    sleep 3
     unset colorarray
 }
 
@@ -150,7 +156,7 @@ append_DLL(){
     for i in ${dllarray[@]};do
         echo "$i" >> "$WINE_PREFIX/user.reg"
     done
-    sleep 4
+    unset dllarray
 }
 
 export_var(){
