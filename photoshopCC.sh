@@ -27,8 +27,19 @@ function main(){
     
     #install wine 3.4
     install_wine34
+    
+    #create new wine prefix for photoshop
+    rmdir_if_exist $WINE_PREFIX
+    
+    #export necessary variable for wine 3.4
+    export_var
+    
+    #config wine prefix and install mono and gecko automatic
+    echo -e "\033[1;93mplease allow mono and gecko packages to be installed automatically\e[0m"
+    echo -e "\033[1;93mif they're not already installed then click on OK button\e[0m"
+    winecfg 2>/dev/null
+    show_message "prefix configured..."
 
-    rmdir_if_exist $WINE_PREFIX 
 }
 
 function setup_log(){
@@ -51,6 +62,26 @@ function warning(){
     setup_log "$@"
 }
 
+export_var(){
+    export WINEPREFIX="$WINE_PREFIX"
+    export PATH="$WINE_PATH/bin:$PATH"
+    export LD_LIBRARY_PATH="$WINE_PATH/lib:$LD_LIBRARY_PATH"
+    export WINEDLLOVERRIDES="winemenubuilder.exe=d"
+    export WINESERVER="$WINE_PATH/bin/wineserver"
+    export WINELOADER="$WINE_PATH/bin/wine"
+    export WINEDLLPATH="$WINE_PATH/lib/wine"
+    
+    show_message "wine variables exported..."
+    local wine_version=$(wine --version)
+    
+    if [ $wine_version == "wine-3.4" ];then
+        show_message "wine 3.4 is configured..."
+    else
+        error "wine 3.4 config is wrong"
+    fi
+}
+
+
 function install_wine34(){
     local filename="wine-3.4.tgz"
     local filepath="$CACHE_PATH/$filename" 
@@ -62,7 +93,7 @@ function install_wine34(){
 }
 
 #parameters is [PATH] [CheckSum] [URL] [FILE NAME]
-function download_component(){
+download_component(){
     local tout=0
     while true;do
         if [ $tout -ge 2 ];then
