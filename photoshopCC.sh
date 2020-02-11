@@ -22,13 +22,8 @@ function main(){
     rmdir_if_exist $WINE_PATH
 
     RESOURCES_PATH="$SCR_PATH/resources"
-    echo "$RESOURCES_PATH"
-
-    pathfile="$CACHE_PATH/fuck.jpg" 
-    md5="b71c05c238f2cdb979e650ecb1d62bba" 
-    link="https://www.dropbox.com/s/61hn7c9oezw0k75/salamKhoviefuckthisshit.jpg?dl=1" 
-    filename="fuck.jpg"
-    download_component $pathfile $md5 $link $filename 
+    
+    install_wine34 
 
 }
 
@@ -50,6 +45,15 @@ function error(){
 function warning(){
     echo -e "\033[1;33mWarning:\e[0m $@"
     setup_log "$@"
+}
+
+function install_wine34(){
+    local filename="wine-3.4.tgz"
+    local filepath="$CACHE_PATH/$filename" 
+    local filemd5="72b485c28e40bba2b73b0d4c0c29a15f" 
+    local filelink="http://bit.ly/2Sh9idu"
+    download_component $filepath $filemd5 $filelink $filename 
+    tar -xzvf $filepath -C $WINE_PATH 1>/dev/null
 }
 
 #parameters is [PATH] [CheckSum] [URL] [FILE NAME]
