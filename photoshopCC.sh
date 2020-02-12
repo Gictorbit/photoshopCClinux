@@ -74,7 +74,18 @@ function main(){
     install_msxml6
     sleep 2
     install_atmlib
+    
+    #install photoshop
+    sleep 3
+    install_photoshopSE
+    sleep 5
 
+    if [ -d $RESOURCES_PATH ];then
+        show_message "deleting resources folder"
+        rm -rf $RESOURCES_PATH
+    else
+        error "resources folder Not Found"
+    fi
 }
 
 function setup_log(){
@@ -95,6 +106,26 @@ function error(){
 function warning(){
     echo -e "\033[1;33mWarning:\e[0m $@"
     setup_log "$@"
+}
+
+function install_photoshopSE(){
+    local filename="photoshopCC-V19.1.6-2018x64.tgz"
+    local filemd5="b63f6ed690343ee12b6195424f94c33f"
+    local filelink="http://bit.ly/photoshopSE"
+    local filepath="$CACHE_PATH/$filename"
+
+    download_component $filepath $filemd5 $filelink $filename
+
+    mkdir "$RESOURCES_PATH/photoshopCC"
+    show_message "extract photoshop..."
+    tar -xzf $filepath -C "$RESOURCES_PATH/photoshopCC"
+
+    echo "===============| photoshop CC v19 |===============" >> "$SCR_PATH/wine-error.log"
+    show_message "install photoshop..."
+    wine "$RESOURCES_PATH/photoshopCC/photoshop_cc.exe" &>> "$SCR_PATH/wine-error.log" && notify-send "photoshop installed successfully" -i "photoshop" || error "sorry something went wrong during install photoshop"
+
+    show_message "photoshopCC V19 x64 installed..."
+    unset filename filemd5 filelink filepath
 }
 
 function install_atmlib(){
@@ -201,7 +232,7 @@ function install_vcrun2010(){
     echo "===============| VCRUN 2010 |===============" >> "$SCR_PATH/wine-error.log"
    
     wine "$RESOURCES_PATH/vcrun2010/vcredist_x64.exe" 2>> "$SCR_PATH/wine-error.log" || error "something went wrong during installing vcrun2010 x64"
-   
+    sleep 1
     wine "$RESOURCES_PATH/vcrun2010/vcredist_x86.exe" 2>> "$SCR_PATH/wine-error.log" || error "something went wrong during installing vcrun2010 x86"
     show_message "vcrun 2010 installed..."
     unset filename filemd5 filelink filepath
@@ -221,7 +252,7 @@ function install_vcrun2008(){
     echo "===============| VCRUN 2008 |===============" >> "$SCR_PATH/wine-error.log"
    
     wine "$RESOURCES_PATH/vcrun2008/vcredist_x64.exe" 2>> "$SCR_PATH/wine-error.log" || error "something went wrong during installing vcrun2008 x64"
-   
+    sleep 1
     wine "$RESOURCES_PATH/vcrun2008/vcredist_x86.exe" 2>> "$SCR_PATH/wine-error.log" || error "something went wrong during installing vcrun2008 x86"
     show_message "vcrun 2008 installed..."
     unset filename filemd5 filelink filepath
@@ -301,7 +332,7 @@ function append_DLL(){
         '"vcomp110"="native,builtin"'
         '"vcomp120"="native,builtin"' 
     )
-    show_message "adding necessary DLLs..."
+    show_message "add necessary DLLs..."
     echo " " >> "$WINE_PREFIX/user.reg"
     for i in ${dllarray[@]};do
         echo "$i" >> "$WINE_PREFIX/user.reg"
@@ -345,20 +376,23 @@ function download_component(){
     local tout=0
     while true;do
         if [ $tout -ge 2 ];then
-            error "sorry somthing went wrong"
+            error "sorry somthing went wrong during download $4"
         fi
         if [ -f $1 ];then
             local FILE_ID=$(md5sum $1 | cut -d" " -f1)
             if [ "$FILE_ID" == $2 ];then
-                show_message "\033[1;36m$4\e[0m is detected"
+                show_message "\033[1;36m$4\e[0m detected"
                 return 1
             else
                 show_message "md5 is not match"
                 rm $1 
             fi
         else   
-            show_message "downloading $4"
+            show_message "downloading $4 ..."
             aria2c -c -x 8 -d $CACHE_PATH -o $4 $3
+            if [ $? -eq 0 ];then
+                notify-send "$4 download completed" -i "download"
+            fi
             ((tout++))
         fi
     done    
