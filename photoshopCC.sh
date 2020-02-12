@@ -58,7 +58,11 @@ function main(){
     #create resources directory 
     rmdir_if_exist $RESOURCES_PATH
 
+    #install vcrun 2008 ,2010,2012,2013
     install_vcrun2008
+    sleep 3
+    install_vcrun2010
+
 
 }
 
@@ -80,6 +84,26 @@ function error(){
 function warning(){
     echo -e "\033[1;33mWarning:\e[0m $@"
     setup_log "$@"
+}
+
+function install_vcrun2010(){
+    local filename="vcrun2010.tgz"
+    local filemd5="484a242b64b3a7de0fa6567d78b771f9"
+    local filelink="http://bit.ly/vcrun2010"
+    local filepath="$CACHE_PATH/$filename"
+    
+    download_component $filepath $filemd5 $filelink $filename
+
+    mkdir "$RESOURCES_PATH/vcrun2010"
+    tar -xzf $filepath -C "$RESOURCES_PATH/vcrun2010"
+   
+    echo "===============| VCRUN 2010 |===============" >> "$SCR_PATH/wine-error.log"
+   
+    wine "$RESOURCES_PATH/vcrun2010/vcredist_x64.exe" 2>> "$SCR_PATH/wine-error.log" || error "something went wrong during installing vcrun2010 x64"
+   
+    wine "$RESOURCES_PATH/vcrun2010/vcredist_x86.exe" 2>> "$SCR_PATH/wine-error.log" || error "something went wrong during installing vcrun2010 x86"
+    show_message "vcrun 2010 installed..."
+    unset filename filemd5 filelink filepath
 }
 
 function install_vcrun2008(){
