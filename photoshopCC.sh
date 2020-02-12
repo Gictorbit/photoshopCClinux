@@ -62,6 +62,8 @@ function main(){
     install_vcrun2008
     sleep 3
     install_vcrun2010
+    sleep 3
+    install_vcrun2012
 
 
 }
@@ -84,6 +86,24 @@ function error(){
 function warning(){
     echo -e "\033[1;33mWarning:\e[0m $@"
     setup_log "$@"
+}
+
+function install_vcrun2012(){
+    local filename="vcrun2012.tgz"
+    local filemd5="86f912bed7b3d76aad04adc23dbe9f48"
+    local filelink="http://bit.ly/vcrun2012"
+    local filepath="$CACHE_PATH/$filename"
+    
+    download_component $filepath $filemd5 $filelink $filename
+
+    mkdir "$RESOURCES_PATH/vcrun2012"
+    tar -xzf $filepath -C "$RESOURCES_PATH/vcrun2012"
+   
+    echo "===============| VCRUN 2012 |===============" >> "$SCR_PATH/wine-error.log"
+   
+    wine "$RESOURCES_PATH/vcrun2010/vcredist_x86.exe" 2>> "$SCR_PATH/wine-error.log" || error "something went wrong during installing vcrun2012 x86"
+    show_message "vcrun 2012 installed..."
+    unset filename filemd5 filelink filepath
 }
 
 function install_vcrun2010(){
