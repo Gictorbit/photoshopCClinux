@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-main(){
+function main(){
     
     SCR_PATH="$HOME/.photoshopCCV19"
     CACHE_PATH="$HOME/.cache/photoshopCCV19"
@@ -57,6 +57,9 @@ main(){
    
     #create resources directory 
     rmdir_if_exist $RESOURCES_PATH
+
+    install_vcrun2008
+
 }
 
 function setup_log(){
@@ -79,7 +82,27 @@ function warning(){
     setup_log "$@"
 }
 
-set_dark_mod(){
+function install_vcrun2008(){
+    local filename="vcrun2008.tgz"
+    local filemd5="38983c8f8736738ed9d2e2bbf5d82373"
+    local filelink="http://bit.ly/vcrun2008"
+    local filepath="$CACHE_PATH/$filename"
+    
+    download_component $filepath $filemd5 $filelink $filename
+
+    mkdir "$RESOURCES_PATH/vcrun2008"
+    tar -xzf $filepath -C "$RESOURCES_PATH/vcrun2008"
+   
+    echo "===============| VCRUN 2008 |===============" >> "$SCR_PATH/wine-error.log"
+   
+    wine "$RESOURCES_PATH/vcrun2008/vcredist_x64.exe" 2>> "$SCR_PATH/wine-error.log" || error "something went wrong during installing vcrun2008 x64"
+   
+    wine "$RESOURCES_PATH/vcrun2008/vcredist_x86.exe" 2>> "$SCR_PATH/wine-error.log" || error "something went wrong during installing vcrun2008 x86"
+    show_message "vcrun 2008 installed..."
+    unset filename filemd5 filelink filepath
+}
+
+function set_dark_mod(){
     echo " " >> "$WINE_PREFIX/user.reg"
     local colorarray=(
         '[Control Panel\\Colors] 1491939580'
@@ -122,7 +145,7 @@ set_dark_mod(){
     unset colorarray
 }
 
-append_DLL(){ 
+function append_DLL(){ 
     local dllarray=(
         '[Software\\Wine\\DllOverrides] 1580889458'
         '#time=1d5dbf9ef00b116'
@@ -161,7 +184,7 @@ append_DLL(){
     unset dllarray
 }
 
-export_var(){
+function export_var(){
     export WINEPREFIX="$WINE_PREFIX"
     export PATH="$WINE_PATH/bin:$PATH"
     export LD_LIBRARY_PATH="$WINE_PATH/lib:$LD_LIBRARY_PATH"
@@ -187,12 +210,13 @@ function install_wine34(){
     local filemd5="72b485c28e40bba2b73b0d4c0c29a15f" 
     local filelink="http://bit.ly/2Sh9idu"
     download_component $filepath $filemd5 $filelink $filename 
-    tar -xzvf $filepath -C $WINE_PATH 1>/dev/null
+    tar -xzf $filepath -C $WINE_PATH
     show_message "wine 3.4 installed..."
+    unset filename filepath filemd5 filelink
 }
 
 #parameters is [PATH] [CheckSum] [URL] [FILE NAME]
-download_component(){
+function download_component(){
     local tout=0
     while true;do
         if [ $tout -ge 2 ];then
