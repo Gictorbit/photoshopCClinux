@@ -69,6 +69,8 @@ function main(){
 
     sleep 3
     install_msxml3
+    sleep 3
+    install_msxml6
 }
 
 function setup_log(){
@@ -89,6 +91,24 @@ function error(){
 function warning(){
     echo -e "\033[1;33mWarning:\e[0m $@"
     setup_log "$@"
+}
+
+function install_msxml6(){
+    local filename="msxml6.tgz"
+    local filemd5="6d0035ce77c0c5fdb81bafdbb145d993"
+    local filelink="http://bit.ly/msxml6PS"
+    local filepath="$CACHE_PATH/$filename"
+    
+    download_component $filepath $filemd5 $filelink $filename
+
+    mkdir "$RESOURCES_PATH/msxml6"
+    tar -xzf $filepath -C "$RESOURCES_PATH/msxml6"
+   
+    echo "===============| msxml6 |===============" >> "$SCR_PATH/wine-error.log"
+   
+    wine msiexec /i "$RESOURCES_PATH/msxml6/msxml6_x64.msi" 2>> "$SCR_PATH/wine-error.log" || error "something went wrong during installing msxml6"
+    show_message "msxml6 installed..."
+    unset filename filemd5 filelink filepath
 }
 
 function install_msxml3(){
