@@ -1,0 +1,11 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=photoshop 
+Exec=bash gictorbit/.photoshopCCV19/luncher/luncher.sh
+Type=Application
+StartupNotify=true
+Comment=photoshop cc for linux
+Icon=photoshop
+Name[fr_FR]=PhotoshopCC
+
+
