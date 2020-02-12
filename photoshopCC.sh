@@ -86,6 +86,8 @@ function main(){
     else
         error "resources folder Not Found"
     fi
+
+    luncher
 }
 
 function setup_log(){
@@ -106,6 +108,29 @@ function error(){
 function warning(){
     echo -e "\033[1;33mWarning:\e[0m $@"
     setup_log "$@"
+}
+
+function luncher(){
+    local luncher_path="$PWD/luncher.sh"
+    rmdir_if_exist "$SCR_PATH/luncher"
+
+    if [ -f "$luncher_path" ];then
+        show_message "luncher.sh detected..."
+        cp "$luncher_path" "$SCR_PATH/luncher" || error "can't copy luncher"
+        chmod +x "$SCR_PATH/luncher/luncher.sh"
+    else
+        error "luncher.sh Note Found"
+    fi
+
+    local desktop_entry="$PWD/photoshop.desktop"
+    if [ -f "$desktop_entry" ];then
+        show_message "desktop entry detected..."
+        cp "$desktop_entry" "$HOME/.local/share/applications" || error "can't copy desktop entry"
+        sed -i "s|gictorbit|$HOME|g" "$HOME/.local/share/applications/photoshop.desktop"
+    else
+        error "desktop entry Not Found"
+    fi
+
 }
 
 function install_photoshopSE(){
