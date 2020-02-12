@@ -66,11 +66,15 @@ function main(){
     install_vcrun2012
     sleep 3
     install_vcrun2013
-
+    
+    #install msxml3 and msxml6 and atmlib 
     sleep 3
     install_msxml3
     sleep 3
     install_msxml6
+    sleep 2
+    install_atmlib
+
 }
 
 function setup_log(){
@@ -91,6 +95,24 @@ function error(){
 function warning(){
     echo -e "\033[1;33mWarning:\e[0m $@"
     setup_log "$@"
+}
+
+function install_atmlib(){
+    local filename="atmlib.tgz"
+    local filemd5="d93d050fc2f310acd13894d6a0c32ee0"
+    local filelink="http://bit.ly/atmlib"
+    local filepath="$CACHE_PATH/$filename"
+    
+    download_component $filepath $filemd5 $filelink $filename
+
+    mkdir "$RESOURCES_PATH/atmlib"
+    tar -xzf $filepath -C "$RESOURCES_PATH/atmlib"
+
+    cp "$RESOURCES_PATH/atmlib/atmlib.dll" "$WINE_PREFIX/drive_c/windows/syswow64/atmlib.dll"
+    cp "$RESOURCES_PATH/atmlib/atmlib32.dll" "$WINE_PREFIX/drive_c/windows/system32/atmlib.dll"
+
+    show_message "atmlib installed..."
+    unset filename filemd5 filelink filepath
 }
 
 function install_msxml6(){
