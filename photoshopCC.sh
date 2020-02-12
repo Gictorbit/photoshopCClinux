@@ -64,8 +64,8 @@ function main(){
     install_vcrun2010
     sleep 3
     install_vcrun2012
-
-
+    sleep 3
+    install_vcrun2013
 }
 
 function setup_log(){
@@ -88,6 +88,24 @@ function warning(){
     setup_log "$@"
 }
 
+function install_vcrun2013(){
+    local filename="vcrun2013.tgz"
+    local filemd5="f0d4e9405c9fc39974d7a62629bfe605"
+    local filelink="http://bit.ly/vcrun2013"
+    local filepath="$CACHE_PATH/$filename"
+    
+    download_component $filepath $filemd5 $filelink $filename
+
+    mkdir "$RESOURCES_PATH/vcrun2013"
+    tar -xzf $filepath -C "$RESOURCES_PATH/vcrun2013"
+   
+    echo "===============| VCRUN 2013 |===============" >> "$SCR_PATH/wine-error.log"
+   
+    wine "$RESOURCES_PATH/vcrun2013/vcredist_x86.exe" 2>> "$SCR_PATH/wine-error.log" || error "something went wrong during installing vcrun2013 x86"
+    show_message "vcrun 2013 installed..."
+    unset filename filemd5 filelink filepath
+}
+
 function install_vcrun2012(){
     local filename="vcrun2012.tgz"
     local filemd5="86f912bed7b3d76aad04adc23dbe9f48"
@@ -101,7 +119,7 @@ function install_vcrun2012(){
    
     echo "===============| VCRUN 2012 |===============" >> "$SCR_PATH/wine-error.log"
    
-    wine "$RESOURCES_PATH/vcrun2010/vcredist_x86.exe" 2>> "$SCR_PATH/wine-error.log" || error "something went wrong during installing vcrun2012 x86"
+    wine "$RESOURCES_PATH/vcrun2012/vcredist_x86.exe" 2>> "$SCR_PATH/wine-error.log" || error "something went wrong during installing vcrun2012 x86"
     show_message "vcrun 2012 installed..."
     unset filename filemd5 filelink filepath
 }
