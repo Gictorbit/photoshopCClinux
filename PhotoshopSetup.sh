@@ -156,7 +156,7 @@ function luncher(){
 function install_photoshopSE(){
     local filename="photoshopCC-V19.1.6-2018x64.tgz"
     local filemd5="b63f6ed690343ee12b6195424f94c33f"
-    local filelink="http://bit.ly/photoshopSE"
+    local filelink="https://www.dropbox.com/s/dwfyzq2ie6jih7g/photoshopCC-V19.1.6-2018x64.tgz?dl=1"
     local filepath="$CACHE_PATH/$filename"
 
     download_component $filepath $filemd5 $filelink $filename
@@ -176,7 +176,7 @@ function install_photoshopSE(){
 function install_atmlib(){
     local filename="atmlib.tgz"
     local filemd5="d93d050fc2f310acd13894d6a0c32ee0"
-    local filelink="http://bit.ly/atmlib"
+    local filelink="https://www.dropbox.com/s/tnwv6prfoq5mc15/atmlib.tgz?dl=1"
     local filepath="$CACHE_PATH/$filename"
     
     download_component $filepath $filemd5 $filelink $filename
@@ -194,7 +194,7 @@ function install_atmlib(){
 function install_msxml6(){
     local filename="msxml6.tgz"
     local filemd5="6d0035ce77c0c5fdb81bafdbb145d993"
-    local filelink="http://bit.ly/msxml6PS"
+    local filelink="https://www.dropbox.com/s/z7mkvnknufji5a3/msxml6.tgz?dl=1"
     local filepath="$CACHE_PATH/$filename"
     
     download_component $filepath $filemd5 $filelink $filename
@@ -212,7 +212,7 @@ function install_msxml6(){
 function install_msxml3(){
     local filename="msxml3.tgz"
     local filemd5="f5d2f91929f4201c134e33daf0e07fec"
-    local filelink="http://bit.ly/msxml3PS"
+    local filelink="https://www.dropbox.com/s/oablx3gp16dneck/msxml3.tgz?dl=1"
     local filepath="$CACHE_PATH/$filename"
     
     download_component $filepath $filemd5 $filelink $filename
@@ -230,7 +230,7 @@ function install_msxml3(){
 function install_vcrun2013(){
     local filename="vcrun2013.tgz"
     local filemd5="f0d4e9405c9fc39974d7a62629bfe605"
-    local filelink="http://bit.ly/vcrun2013"
+    local filelink="https://www.dropbox.com/s/r1o6k8906gbx920/vcrun2013.tgz?dl=1"
     local filepath="$CACHE_PATH/$filename"
     
     download_component $filepath $filemd5 $filelink $filename
@@ -248,7 +248,7 @@ function install_vcrun2013(){
 function install_vcrun2012(){
     local filename="vcrun2012.tgz"
     local filemd5="86f912bed7b3d76aad04adc23dbe9f48"
-    local filelink="http://bit.ly/vcrun2012"
+    local filelink="https://www.dropbox.com/s/4lv27vgjkx5gkv2/vcrun2012.tgz?dl=1"
     local filepath="$CACHE_PATH/$filename"
     
     download_component $filepath $filemd5 $filelink $filename
@@ -266,7 +266,7 @@ function install_vcrun2012(){
 function install_vcrun2010(){
     local filename="vcrun2010.tgz"
     local filemd5="484a242b64b3a7de0fa6567d78b771f9"
-    local filelink="http://bit.ly/vcrun2010"
+    local filelink="https://www.dropbox.com/s/c7jyzb93hm2p7v8/vcrun2010.tgz?dl=1"
     local filepath="$CACHE_PATH/$filename"
     
     download_component $filepath $filemd5 $filelink $filename
@@ -286,7 +286,7 @@ function install_vcrun2010(){
 function install_vcrun2008(){
     local filename="vcrun2008.tgz"
     local filemd5="38983c8f8736738ed9d2e2bbf5d82373"
-    local filelink="http://bit.ly/vcrun2008"
+    local filelink="https://www.dropbox.com/s/fmjjrx9xq5a9qqc/vcrun2008.tgz?dl=1"
     local filepath="$CACHE_PATH/$filename"
     
     download_component $filepath $filemd5 $filelink $filename
@@ -409,7 +409,7 @@ function install_wine34(){
     local filename="wine-3.4.tgz"
     local filepath="$CACHE_PATH/$filename" 
     local filemd5="72b485c28e40bba2b73b0d4c0c29a15f" 
-    local filelink="http://bit.ly/2Sh9idu"
+    local filelink="http://www.playonlinux.com/wine/binaries/phoenicis/upstream-linux-amd64/PlayOnLinux-wine-3.4-upstream-linux-amd64.tar.gz"
     download_component $filepath $filemd5 $filelink $filename 
     tar -xzf $filepath -C $WINE_PATH
     show_message "wine 3.4 installed..."
