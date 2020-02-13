@@ -80,6 +80,8 @@ function main(){
     install_photoshopSE
     sleep 5
 
+    replacement
+
     if [ -d $RESOURCES_PATH ];then
         show_message "deleting resources folder"
         rm -rf $RESOURCES_PATH
@@ -127,17 +129,17 @@ function luncher(){
 
     #create desktop entry
     local desktop_entry="$PWD/photoshop.desktop"
-    local desktop_entry_dest="$HOME/.local/share/applications/photoshop.desktop"
+    local desktop_entry_dest="/usr/share/applications/photoshop.desktop"
     
     if [ -f "$desktop_entry" ];then
         show_message "desktop entry detected..."
         #delete desktop entry if exists
         if [ -f "$desktop_entry_dest" ];then
             show_message "desktop entry exist deleted..."
-            rm "$desktop_entry_dest"
+            sudo rm "$desktop_entry_dest"
         fi
-        cp "$desktop_entry" "$HOME/.local/share/applications" || error "can't copy desktop entry"
-        sed -i "s|gictorbit|$HOME|g" "$desktop_entry_dest" || error "can't edit desktop entry"
+        sudo cp "$desktop_entry" "/usr/share/applications" || error "can't copy desktop entry"
+        sudo sed -i "s|gictorbit|$HOME|g" "$desktop_entry_dest" || error "can't edit desktop entry"
     else
         error "desktop entry Not Found"
     fi
@@ -151,6 +153,30 @@ function luncher(){
     sudo ln -s "$SCR_PATH/luncher/luncher.sh" "/usr/local/bin/photoshop" || error "can't create photoshop command"
 
     unset desktop_entry desktop_entry_dest luncher_path
+}
+
+function replacement(){
+    local filename="replacement.tgz"
+    local filemd5="6441a8e77c082897a99c2b7b588c9ac4"
+    local filelink="https://www.dropbox.com/s/17pv6aezl7wz6gs/replacement.tgz?dl=1"
+    local filepath="$CACHE_PATH/$filename"
+
+    download_component $filepath $filemd5 $filelink $filename
+
+    mkdir "$RESOURCES_PATH/replacement"
+    show_message "extract replacement component..."
+    tar -xzf $filepath -C "$RESOURCES_PATH/replacement"
+
+    local replacefiles=("IconResources.idx" "PSIconsHighRes.dat" "PSIconsLowRes.dat")
+    local destpath="$WINE_PREFIX/drive_c/users/victor/PhotoshopSE/Resources"
+    
+    for f in "${replacefiles[@]}";do
+        local sourcepath="$RESOURCES_PATH/replacement/$f"
+        cp -f "$sourcepath" "$destpath" || error "cant copy replacement $f file..."
+    done
+
+    show_message "replace component compeleted..."
+    unset filename filemd5 filelink filepath
 }
 
 function install_photoshopSE(){
@@ -167,6 +193,7 @@ function install_photoshopSE(){
 
     echo "===============| photoshop CC v19 |===============" >> "$SCR_PATH/wine-error.log"
     show_message "install photoshop..."
+    show_message "\033[1;33mPlease don't change default Destination Folder\e[0m"
     wine "$RESOURCES_PATH/photoshopCC/photoshop_cc.exe" &>> "$SCR_PATH/wine-error.log" && notify-send "photoshop installed successfully" -i "photoshop" || error "sorry something went wrong during install photoshop"
 
     show_message "photoshopCC V19 x64 installed..."
