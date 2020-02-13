@@ -122,15 +122,32 @@ function luncher(){
         error "luncher.sh Note Found"
     fi
 
+    #create desktop entry
     local desktop_entry="$PWD/photoshop.desktop"
+    local desktop_entry_dest="$HOME/.local/share/applications/photoshop.desktop"
+    
     if [ -f "$desktop_entry" ];then
         show_message "desktop entry detected..."
+        #delete desktop entry if exists
+        if [ -f "$desktop_entry_dest" ];then
+            show_message "desktop entry exist deleted..."
+            rm "$desktop_entry_dest"
+        fi
         cp "$desktop_entry" "$HOME/.local/share/applications" || error "can't copy desktop entry"
-        sed -i "s|gictorbit|$HOME|g" "$HOME/.local/share/applications/photoshop.desktop"
+        sed -i "s|gictorbit|$HOME|g" "$desktop_entry_dest" || error "can't edit desktop entry"
     else
         error "desktop entry Not Found"
     fi
 
+    #create photoshop command
+    show_message "create photoshop command..."
+    if [ -f "/usr/local/bin/photoshop" ];then
+        show_message "photoshop command exist deleted..."
+        sudo rm "/usr/local/bin/photoshop"
+    fi
+    sudo ln -s "$SCR_PATH/luncher/luncher.sh" "/usr/local/bin/photoshop" || error "can't create photoshop command"
+
+    unset desktop_entry desktop_entry_dest luncher_path
 }
 
 function install_photoshopSE(){
