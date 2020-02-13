@@ -1,7 +1,7 @@
 ![screenshot](images/Screenshot.png)
 
 ![GitHub repo size](https://img.shields.io/github/license/Gictorbit/photoshopCClinux?style=flat) ![Tested on arch](https://img.shields.io/badge/Tested%20on-Archlinux-brightgreen)
-![GitHub stars](https://img.shields.io/github/stars/Gictorbit/photoshopCClinux?style=sad) ![rep size](https://img.shields.io/github/repo-size/gictorbit/photoshopCClinux)
+![GitHub stars](https://img.shields.io/github/stars/Gictorbit/photoshopCClinux?style=sad) ![rep size](https://img.shields.io/github/repo-size/gictorbit/photoshopCClinux) ![bash](https://img.shields.io/badge/bash-5.0.11-yellowgreen)
 
 # photohop CC v19 installer for linux
 This bash script installs Photoshop CC version 19 on your Linux machine using wine behind the scene
@@ -18,7 +18,8 @@ and sets some necessary component up for best performance
 
 ## Requirements
 1- use 64bit edition of your distro
-make sure below packages is already installed on your Linux distro
+
+2-make sure below packages are already installed on your Linux distro
 * `wine`
 * `aria2c`
 * `md5sum`
@@ -27,10 +28,10 @@ if they are not already installed you can install them using your package manage
 ```bash
 sudo pacman -S wine aria2c
 ``` 
-2- make sure you have enogh storage in your `/home` partition about `5 GiB`
+3- make sure you have enogh storage in your `/home` partition about `5 GiB`
 > 1 GiB will be free after installation
 
-3- make sure you have internet connection and about 1.5 Gib traffic for downloading photoshop and its components at first time
+4- make sure you have internet connection and about 1.5 Gib traffic for downloading photoshop and its components at first time
 
 ## Installation
 for installing photoshop just run the bash script with below command it downloads and installs photoshop include its component and configures wine automatically
