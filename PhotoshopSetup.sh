@@ -88,6 +88,9 @@ function main(){
     fi
 
     luncher
+    show_message "\033[1;33mwhen you run photoshop for the first time it may take a while\e[0m"
+    show_message "Almost Finish..."
+    sleep 30
 }
 
 function setup_log(){
