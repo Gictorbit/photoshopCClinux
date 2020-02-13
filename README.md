@@ -1,4 +1,8 @@
 ![screenshot](images/Screenshot.png)
+
+![GitHub repo size](https://img.shields.io/github/license/Gictorbit/photoshopCClinux?style=flat) ![Tested on arch](https://img.shields.io/badge/Tested%20on-Archlinux-brightgreen)
+![GitHub stars](https://img.shields.io/github/stars/Gictorbit/photoshopCClinux?style=sad) ![rep size](https://img.shields.io/github/repo-size/gictorbit/photoshopCClinux)
+
 # photohop CC v19 installer for linux
 This bash script installs Photoshop CC version 19 on your Linux machine using wine behind the scene
 and sets some necessary component up for best performance
