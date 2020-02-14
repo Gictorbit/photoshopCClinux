@@ -24,8 +24,9 @@ main(){
         echo "photoshop directory Not Found!"
     fi
     
+    
     #Unlink command 
-    if [ -f "$CMD_PATH" ];then
+    if [ -L "$CMD_PATH" ];then
         echo "remove luncher command..."
         sudo unlink "$CMD_PATH" || error "couln't remove luncher command"
     else
