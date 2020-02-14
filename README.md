@@ -26,7 +26,7 @@ and sets some necessary component up for best performance
 
 if they are not already installed you can install them using your package manager for example in arch Linux
 ```bash
-sudo pacman -S wine aria2c
+sudo pacman -Syy wine aria2
 ``` 
 3- make sure you have enogh storage in your `/home` partition about `5 GiB`
 > 1 GiB will be free after installation
@@ -34,7 +34,12 @@ sudo pacman -S wine aria2c
 4- make sure you have internet connection and about 1.5 Gib traffic for downloading photoshop and its components at first time
 
 ## Installation
-for installing photoshop just run the bash script with below command it downloads and installs photoshop include its component and configures wine automatically
+first of all you need clone the repository with this command:
+```bash
+git clone https://github.com/Gictorbit/photoshopCClinux.git
+cd photoshopCClinux
+```
+then for installing photoshop just run the bash script with below command it downloads and installs photoshop include its component and configures wine automatically
 
 ```bash
 chmod +x PhotoshopSetup.sh
