@@ -42,7 +42,7 @@ main(){
     if [ -d "$CACHE_PATH" ];then
         echo "--------------------------------"
         echo "all downloaded components are in cache directory and you can use them for photoshop installation next time without wasting internet traffic"
-        echo "your cache directory is $CACHE_PATH"
+        echo -e "your cache directory is \033[1;36m$CACHE_PATH\e[0m"
         echo "--------------------------------"
         ask_question "would you delete cache directory?" "N"
         if [ "$result" == "yes" ];then
