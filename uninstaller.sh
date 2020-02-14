@@ -35,13 +35,15 @@ main(){
         echo "remove dekstop entry...."
         sudo rm "$ENTRY_PATH" || error "couldn't remove desktop entry"
     else
-        echo "desktop entry Not Found"
+        echo "desktop entry Not Found!"
     fi
 
     #delete cache directoy
     if [ -d "$CACHE_PATH" ];then
+        echo "--------------------------------"
         echo "all downloaded components are in cache directory and you can use them for photoshop installation next time without wasting internet traffic"
         echo "your cache directory is $CACHE_PATH"
+        echo "--------------------------------"
         ask_question "would you delete cache directory?" "N"
         if [ "$result" == "yes" ];then
             rm -rf "$CACHE_PATH" || error "couldn't remove cache directory"
@@ -49,18 +51,18 @@ main(){
             echo "nice, you can copy component data and use them later for photoshop installation"
         fi
     else
-        echo "cache directory Not Found"    
+        echo "cache directory Not Found!"    
     fi
 
 
 }
 
-error(){
+function error(){
     echo -e "\033[1;31merror:\e[0m $@"
     exit 1
 }
 
-check_arg(){
+function check_arg(){
     if [ $1 != 0 ];then
         error "please just run script without any argument"
     fi
