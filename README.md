@@ -42,8 +42,12 @@ chmod +x PhotoshopSetup.sh
 ```
 during installation please pay attention to script messages
 
-## To Do
-* create uninstall script
+## Uninstall
+for uninstall photoshop you can use uninstaller script with below commands
+```bash
+chmod +x uninstaller.sh
+./uninstaller.sh
+```
 
 
 ## License
