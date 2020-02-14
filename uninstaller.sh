@@ -6,6 +6,8 @@ main(){
 
     CMD_PATH="/usr/local/bin/photoshop"
     ENTRY_PATH="/usr/share/applications/photoshop.desktop"
+    
+    notify-send "photoshop uninstaller started" -i "photoshop"
 
     ask_question "you are uninstalling photoshop cc v19 are you sure?" "N"
     if [ $result == "no" ];then
@@ -53,7 +55,6 @@ main(){
     else
         echo "cache directory Not Found!"    
     fi
-
 
 }
 
