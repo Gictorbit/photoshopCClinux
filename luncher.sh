@@ -23,4 +23,4 @@ export WINESERVER="$WINE_PATH/bin/wineserver"
 export WINELOADER="$WINE_PATH/bin/wine"
 export WINEDLLPATH="$WINE_PATH/lib/wine"
 
-wine $HOME/.photoshopCCV19/prefix/drive_c/$USER/victor/PhotoshopSE/Photoshop.exe
+wine $HOME/.photoshopCCV19/prefix/drive_c/users/$USER/PhotoshopSE/Photoshop.exe
