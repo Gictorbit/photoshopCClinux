@@ -168,7 +168,7 @@ function replacement(){
     tar -xzf $filepath -C "$RESOURCES_PATH/replacement"
 
     local replacefiles=("IconResources.idx" "PSIconsHighRes.dat" "PSIconsLowRes.dat")
-    local destpath="$WINE_PREFIX/drive_c/users/victor/PhotoshopSE/Resources"
+    local destpath="$WINE_PREFIX/drive_c/users/$USER/PhotoshopSE/Resources"
     
     for f in "${replacefiles[@]}";do
         local sourcepath="$RESOURCES_PATH/replacement/$f"
