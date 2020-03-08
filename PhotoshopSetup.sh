@@ -194,8 +194,10 @@ function install_photoshopSE(){
     echo "===============| photoshop CC v19 |===============" >> "$SCR_PATH/wine-error.log"
     show_message "install photoshop..."
     show_message "\033[1;33mPlease don't change default Destination Folder\e[0m"
-    wine "$RESOURCES_PATH/photoshopCC/photoshop_cc.exe" &>> "$SCR_PATH/wine-error.log" && notify-send "photoshop installed successfully" -i "photoshop" || error "sorry something went wrong during install photoshop"
 
+    wine "$RESOURCES_PATH/photoshopCC/photoshop_cc.exe" &>> "$SCR_PATH/wine-error.log" || error "sorry something went wrong during install photoshop"
+
+    notify-send "photoshop installed successfully" -i "photoshop"
     show_message "photoshopCC V19 x64 installed..."
     unset filename filemd5 filelink filepath
 }
