@@ -195,7 +195,7 @@ function install_photoshopSE(){
     show_message "install photoshop..."
     show_message "\033[1;33mPlease don't change default Destination Folder\e[0m"
 
-    wine "$RESOURCES_PATH/photoshopCC/photoshop_cc.exe" &>> "$SCR_PATH/wine-error.log" || error "sorry something went wrong during install photoshop"
+    wine "$RESOURCES_PATH/photoshopCC/photoshop_cc.exe" &>> "$SCR_PATH/wine-error.log" || error "sorry something went wrong during photoshop installation"
 
     notify-send "photoshop installed successfully" -i "photoshop"
     show_message "photoshopCC V19 x64 installed..."
@@ -233,7 +233,7 @@ function install_msxml6(){
    
     echo "===============| msxml6 |===============" >> "$SCR_PATH/wine-error.log"
    
-    wine msiexec /i "$RESOURCES_PATH/msxml6/msxml6_x64.msi" 2>> "$SCR_PATH/wine-error.log" || error "something went wrong during installing msxml6"
+    wine msiexec /i "$RESOURCES_PATH/msxml6/msxml6_x64.msi" 2>> "$SCR_PATH/wine-error.log" || error "something went wrong during msxml6 instalation"
     show_message "msxml6 installed..."
     unset filename filemd5 filelink filepath
 }
@@ -251,7 +251,7 @@ function install_msxml3(){
    
     echo "===============| msxml3 |===============" >> "$SCR_PATH/wine-error.log"
    
-    wine msiexec /i "$RESOURCES_PATH/msxml3/msxml3.msi" 2>> "$SCR_PATH/wine-error.log" || error "something went wrong during installing msxml3"
+    wine msiexec /i "$RESOURCES_PATH/msxml3/msxml3.msi" 2>> "$SCR_PATH/wine-error.log" || error "something went wrong during msxml3 installation"
     show_message "msxml3 installed..."
     unset filename filemd5 filelink filepath
 }
@@ -269,7 +269,7 @@ function install_vcrun2013(){
    
     echo "===============| VCRUN 2013 |===============" >> "$SCR_PATH/wine-error.log"
    
-    wine "$RESOURCES_PATH/vcrun2013/vcredist_x86.exe" 2>> "$SCR_PATH/wine-error.log" || error "something went wrong during installing vcrun2013 x86"
+    wine "$RESOURCES_PATH/vcrun2013/vcredist_x86.exe" 2>> "$SCR_PATH/wine-error.log" || error "something went wrong during vcrun2013 x86 installation"
     show_message "vcrun 2013 installed..."
     unset filename filemd5 filelink filepath
 }
@@ -287,7 +287,7 @@ function install_vcrun2012(){
    
     echo "===============| VCRUN 2012 |===============" >> "$SCR_PATH/wine-error.log"
    
-    wine "$RESOURCES_PATH/vcrun2012/vcredist_x86.exe" 2>> "$SCR_PATH/wine-error.log" || error "something went wrong during installing vcrun2012 x86"
+    wine "$RESOURCES_PATH/vcrun2012/vcredist_x86.exe" 2>> "$SCR_PATH/wine-error.log" || error "something went wrong during vcrun2012 x86 installation"
     show_message "vcrun 2012 installed..."
     unset filename filemd5 filelink filepath
 }
@@ -305,9 +305,9 @@ function install_vcrun2010(){
    
     echo "===============| VCRUN 2010 |===============" >> "$SCR_PATH/wine-error.log"
    
-    wine "$RESOURCES_PATH/vcrun2010/vcredist_x64.exe" 2>> "$SCR_PATH/wine-error.log" || error "something went wrong during installing vcrun2010 x64"
+    wine "$RESOURCES_PATH/vcrun2010/vcredist_x64.exe" 2>> "$SCR_PATH/wine-error.log" || error "something went wrong during vcrun2010 x64 installation"
     sleep 1
-    wine "$RESOURCES_PATH/vcrun2010/vcredist_x86.exe" 2>> "$SCR_PATH/wine-error.log" || error "something went wrong during installing vcrun2010 x86"
+    wine "$RESOURCES_PATH/vcrun2010/vcredist_x86.exe" 2>> "$SCR_PATH/wine-error.log" || error "something went wrong during vcrun2010 x86 installation"
     show_message "vcrun 2010 installed..."
     unset filename filemd5 filelink filepath
 }
@@ -325,9 +325,9 @@ function install_vcrun2008(){
    
     echo "===============| VCRUN 2008 |===============" >> "$SCR_PATH/wine-error.log"
    
-    wine "$RESOURCES_PATH/vcrun2008/vcredist_x64.exe" 2>> "$SCR_PATH/wine-error.log" || error "something went wrong during installing vcrun2008 x64"
+    wine "$RESOURCES_PATH/vcrun2008/vcredist_x64.exe" 2>> "$SCR_PATH/wine-error.log" || error "something went wrong during vcrun2008 x64 installation"
     sleep 1
-    wine "$RESOURCES_PATH/vcrun2008/vcredist_x86.exe" 2>> "$SCR_PATH/wine-error.log" || error "something went wrong during installing vcrun2008 x86"
+    wine "$RESOURCES_PATH/vcrun2008/vcredist_x86.exe" 2>> "$SCR_PATH/wine-error.log" || error "something went wrong during vcrun2008 x86 installation"
     show_message "vcrun 2008 installed..."
     unset filename filemd5 filelink filepath
 }
