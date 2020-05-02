@@ -1,7 +1,11 @@
+
+<div align="center" class="tip" markdown="1" style>
+
 ![screenshot](images/Screenshot.png)
 
 ![GitHub repo size](https://img.shields.io/github/license/Gictorbit/photoshopCClinux?style=flat) ![Tested on arch](https://img.shields.io/badge/Tested%20on-Archlinux-brightgreen)
 ![GitHub stars](https://img.shields.io/github/stars/Gictorbit/photoshopCClinux?style=sad) ![rep size](https://img.shields.io/github/repo-size/gictorbit/photoshopCClinux) ![bash](https://img.shields.io/badge/bash-5.0.11-yellowgreen)
+</div>
 
 # photohop CC v19 installer for linux
 This bash script installs Photoshop CC version 19 on your Linux machine using wine behind the scene
@@ -50,7 +54,7 @@ first of all you need to clone the repository with this command:
 git clone https://github.com/Gictorbit/photoshopCClinux.git
 cd photoshopCClinux
 ```
-### component installation using winetricks (Recommended)
+### :point_right: component installation using winetricks (Recommended)
 for installing photoshop just run the bash script with below command it downloads and installs photoshop include its component using winetricks and configures wine automatically
 
 ```bash
@@ -58,7 +62,7 @@ chmod +x PhotoshopSetup.sh
 ./PhotoshopSetup.sh
 ```
 
-### component installation using custom script
+### :point_right: component installation using custom script
 for installing photoshop just run the bash script with below command it downloads and installs photoshop include its component and configures wine automatically
 
 ```bash
@@ -76,9 +80,25 @@ if you need to configure wineprefix of photoshop you can use `winecfg.sh` script
 chmod +x winecfg.sh
 ./winecfg.sh
 ```
+## Tools
+as you know photoshop has many useful tools like `Liquify Tools`.</br>
+
+if you get some errors during working with these tools
+It may because of the graphics card.</br>
+
+photoshop uses the `GPU` to process these tools so before using these tools make sure that your graphics card `(Nvidia, AMD)` is configured correctly in your Linux machine.
+</br>The other solution is you can configure photoshop to use `CPU` for image processing. to do that, follow the below steps:
+
+* go to edit tab and open `preferences` or `[ctrl+K]`
+* then go to the `performance` tab
+* in the graphics processor settings section, uncheck `Use graphics processor`
+
+![](https://user-images.githubusercontent.com/34630603/80861998-117b7a80-8c87-11ea-8f56-079f43dfafd9.png)
+
 
 ## Uninstall
 for uninstall photoshop you can use uninstaller script with below commands
+
 ```bash
 chmod +x uninstaller.sh
 ./uninstaller.sh
