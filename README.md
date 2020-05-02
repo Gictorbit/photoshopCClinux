@@ -11,7 +11,7 @@
 This bash script installs Photoshop CC version 19 on your Linux machine using wine behind the scene
 and sets some necessary component up for best performance
 
-## Features
+## :rocket: Features
 * downloads necessary component and installs them (`vcrun`,`atmlib`,`msxml`...)
 * downloads photoshop.exe installer and installs it automatically
 * creates photoshop commands and desktop entry
@@ -21,7 +21,7 @@ and sets some necessary component up for best performance
 * It's free and you will not need any license key
 * works on any Linux distributions
 
-## Requirements
+## :warning: Requirements
 1- use 64bit edition of your distro
 
 2-make sure below packages are already installed on your Linux distro
@@ -40,7 +40,7 @@ sudo pacman -Syy wine aria2
 
 4- make sure you have internet connection and about 1.5 Gib traffic for downloading photoshop and its components at first time
 
-## Installation
+## :computer: Installation
 for components installation you have two options, using winetricks or using custom way.
 there are two installation scripts
 
@@ -54,7 +54,7 @@ first of all you need to clone the repository with this command:
 git clone https://github.com/Gictorbit/photoshopCClinux.git
 cd photoshopCClinux
 ```
-### :point_right: component installation using winetricks (Recommended)
+### :one: component installation using winetricks (Recommended)
 for installing photoshop just run the bash script with below command it downloads and installs photoshop include its component using winetricks and configures wine automatically
 
 ```bash
@@ -62,7 +62,7 @@ chmod +x PhotoshopSetup.sh
 ./PhotoshopSetup.sh
 ```
 
-### :point_right: component installation using custom script
+### :two: component installation using custom script
 for installing photoshop just run the bash script with below command it downloads and installs photoshop include its component and configures wine automatically
 
 ```bash
@@ -74,13 +74,13 @@ during installation please pay attention to script messages
 
 > **NOTE :** make sure OS version in wine is on windows 7
 
-## wineprefix Configuration
+## :wine_glass: wineprefix Configuration
 if you need to configure wineprefix of photoshop you can use `winecfg.sh` script just run below command
 ```bash
 chmod +x winecfg.sh
 ./winecfg.sh
 ```
-## Tools
+## :hammer: Tools
 as you know photoshop has many useful tools like `Liquify Tools`.</br>
 
 if you get some errors during working with these tools
@@ -96,7 +96,7 @@ photoshop uses the `GPU` to process these tools so before using these tools make
 ![](https://user-images.githubusercontent.com/34630603/80861998-117b7a80-8c87-11ea-8f56-079f43dfafd9.png)
 
 
-## Uninstall
+## :hotsprings: Uninstall
 for uninstall photoshop you can use uninstaller script with below commands
 
 ```bash
@@ -105,5 +105,5 @@ chmod +x uninstaller.sh
 ```
 
 
-## License
+## :bookmark: License
 ![GitHub](https://img.shields.io/github/license/Gictorbit/photoshopCClinux?style=for-the-badge)
