@@ -78,7 +78,7 @@ function main(){
         error "resources folder Not Found"
     fi
 
-    luncher
+    launcher
     show_message "\033[1;33mwhen you run photoshop for the first time it may take a while\e[0m"
     show_message "Almost Finish..."
     sleep 30
@@ -104,16 +104,16 @@ function warning(){
     setup_log "$@"
 }
 
-function luncher(){
-    local luncher_path="$PWD/luncher.sh"
-    rmdir_if_exist "$SCR_PATH/luncher"
+function launcher(){
+    local launcher_path="$PWD/launcher.sh"
+    rmdir_if_exist "$SCR_PATH/launcher"
 
-    if [ -f "$luncher_path" ];then
-        show_message "luncher.sh detected..."
-        cp "$luncher_path" "$SCR_PATH/luncher" || error "can't copy luncher"
-        chmod +x "$SCR_PATH/luncher/luncher.sh"
+    if [ -f "$launcher_path" ];then
+        show_message "launcher.sh detected..."
+        cp "$launcher_path" "$SCR_PATH/launcher" || error "can't copy launcher"
+        chmod +x "$SCR_PATH/launcher/launcher.sh"
     else
-        error "luncher.sh Note Found"
+        error "launcher.sh Note Found"
     fi
 
     #create desktop entry
@@ -139,9 +139,9 @@ function luncher(){
         show_message "photoshop command exist deleted..."
         sudo rm "/usr/local/bin/photoshop"
     fi
-    sudo ln -s "$SCR_PATH/luncher/luncher.sh" "/usr/local/bin/photoshop" || error "can't create photoshop command"
+    sudo ln -s "$SCR_PATH/launcher/launcher.sh" "/usr/local/bin/photoshop" || error "can't create photoshop command"
 
-    unset desktop_entry desktop_entry_dest luncher_path
+    unset desktop_entry desktop_entry_dest launcher_path
 }
 
 function replacement(){

@@ -27,10 +27,10 @@ main(){
     
     #Unlink command 
     if [ -L "$CMD_PATH" ];then
-        echo "remove luncher command..."
-        sudo unlink "$CMD_PATH" || error "couln't remove luncher command"
+        echo "remove launcher command..."
+        sudo unlink "$CMD_PATH" || error "couln't remove launcher command"
     else
-        echo "luncher command Not Found!"
+        echo "launcher command Not Found!"
     fi
 
     #delete desktop entry
