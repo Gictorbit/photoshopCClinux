@@ -81,6 +81,10 @@ chmod +x winecfg.sh
 ./winecfg.sh
 ```
 ## :hammer: Tools
+
+<details>
+<summary>:sparkles: Liquify Tools</summary>
+
 as you know photoshop has many useful tools like `Liquify Tools`.</br>
 
 if you get some errors during working with these tools
@@ -94,7 +98,25 @@ photoshop uses the `GPU` to process these tools so before using these tools make
 * in the graphics processor settings section, uncheck `Use graphics processor`
 
 ![](https://user-images.githubusercontent.com/34630603/80861998-117b7a80-8c87-11ea-8f56-079f43dfafd9.png)
+</details>
 
+<details>
+<summary>:camera: Adobe Camera Raw</summary>
+
+another useful adobe software is `camera raw` if you want to work with it beside photoshop you must install it separately to do this, after photoshop installation run `cameraRawInstaller.sh` script with below commands:
+```bash
+chmod +x cameraRawInstaller.sh
+./cameraRawInstaller.sh
+```
+then restart photoshop.you can open it from 
+`Edit >>Preferences >> Camera Raw`
+
+> **_NOTE1:_** the size of camera raw installation file is about 400MB
+
+
+> **_NOTE2:_** camera raw performance depends on your graphic card driver and its configuration
+
+</details>
 
 ## :hotsprings: Uninstall
 for uninstall photoshop you can use uninstaller script with below commands
