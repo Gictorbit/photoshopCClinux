@@ -84,7 +84,6 @@ chmod +x winecfg.sh
 
 <details>
 <summary>:sparkles: Liquify Tools</summary>
-
 as you know photoshop has many useful tools like `Liquify Tools`.</br>
 
 if you get some errors during working with these tools
@@ -100,6 +99,7 @@ photoshop uses the `GPU` to process these tools so before using these tools make
 ![](https://user-images.githubusercontent.com/34630603/80861998-117b7a80-8c87-11ea-8f56-079f43dfafd9.png)
 </details>
 
+---
 <details>
 <summary>:camera: Adobe Camera Raw</summary>
 
