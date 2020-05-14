@@ -41,7 +41,7 @@ sudo pacman -Syy wine aria2
 4- make sure you have internet connection and about 1.5 Gib traffic for downloading photoshop and its components at first time
 
 ## :computer: Installation
-for components installation you have two options, using winetricks or using custom way.
+
 there are two installation scripts
 
 * `PhotoshopSetup.sh`
@@ -54,6 +54,27 @@ first of all you need to clone the repository with this command:
 git clone https://github.com/Gictorbit/photoshopCClinux.git
 cd photoshopCClinux
 ```
+then you can easily run `setup.sh` script to install photoshop cc on your linux distro
+
+```bash
+chmod +x setup.sh
+./setup.sh
+```
+<div align="center" class="tip" markdown="1" style>
+
+![setup-screenshot](images/setup-screenshot.png)
+</div>
+
+during installation please pay attention to script messages
+
+> **NOTE :** make sure OS version in wine is on windows 7
+
+
+<details>
+<summary>more details</summary>
+
+for components installation you have two options, using winetricks or using custom way.
+
 ### :one: component installation using winetricks (Recommended)
 for installing photoshop just run the bash script with below command it downloads and installs photoshop include its component using winetricks and configures wine automatically
 
@@ -70,9 +91,8 @@ chmod +x PhotoshopSetupCustom.sh
 ./PhotoshopSetupCustom.sh
 ```
 
-during installation please pay attention to script messages
+</details>
 
-> **NOTE :** make sure OS version in wine is on windows 7
 
 ## :wine_glass: wineprefix Configuration
 if you need to configure wineprefix of photoshop you can use `winecfg.sh` script just run below command
