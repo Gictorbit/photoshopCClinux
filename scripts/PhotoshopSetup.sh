@@ -66,7 +66,7 @@ function main(){
     install_photoshopSE
     sleep 5
 
-    echo -e "\033[1;93mSelect \"Windwos 7\"for windows version and then click OK\e[0m"
+    echo -e "\033[1;93mSelect \"Windwos 7\" for windows version and then click OK\e[0m"
     winecfg
     
     replacement
