@@ -54,7 +54,7 @@ function run_script(){
     else
         error "$script_name not Found..."    
     fi
-    cd "./scripts/" && sh $script_name
+    cd "./scripts/" && bash $script_name
     unset script_path
 }
 
