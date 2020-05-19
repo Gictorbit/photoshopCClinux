@@ -33,6 +33,14 @@ function warning(){
     setup_log "$@"
 }
 
+function warning2(){
+    echo -e "\033[1;33mWarning:\e[0m $@"
+}
+
+function show_message2(){
+    echo -e "$@"
+}
+
 function launcher(){
     local launcher_path="$PWD/launcher.sh"
     rmdir_if_exist "$SCR_PATH/launcher"
