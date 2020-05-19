@@ -5,6 +5,11 @@ function package_installed(){
         show_message "package\033[1;36m $1\e[0m is installed..."
     else
         warning "package\033[1;33m $1\e[0m is not installed.\nplease make sure it's already installed"
+        ask_question "would you continue?" "N"
+        if [ "$question_result" == "no" ];then
+            echo "exit..."
+            exit 5
+        fi
     fi
 }
 
@@ -295,4 +300,24 @@ function is64(){
         fi
     fi
    show_message "is64 checked..."
+}
+
+#parameters [Message] [default flag [Y/N]]
+function ask_question(){
+    question_result=""
+    if [ "$2" == "Y" ];then
+        read -r -p "$1 [Y/n] " response
+        if [[ "$response" =~ $(locale noexpr) ]];then
+            question_result="no"
+        else
+            question_result="yes"
+        fi
+    elif [ "$2" == "N" ];then
+        read -r -p "$1 [N/y] " response
+        if [[ "$response" =~ $(locale yesexpr) ]];then
+            question_result="yes"
+        else
+            question_result="no"
+        fi
+    fi
 }
