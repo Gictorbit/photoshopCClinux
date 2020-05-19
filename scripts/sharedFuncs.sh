@@ -120,7 +120,7 @@ function install_photoshopSE(){
 
     mkdir "$RESOURCES_PATH/photoshopCC"
     show_message "extract photoshop..."
-    tar -xzf $filepath -C "$RESOURCES_PATH/photoshopCC"
+    tar -xzf "$filepath" -C "$RESOURCES_PATH/photoshopCC"
 
     echo "===============| photoshop CC v19 |===============" >> "$SCR_PATH/wine-error.log"
     show_message "install photoshop..."
@@ -227,7 +227,7 @@ function export_var(){
     show_message "wine variables exported..."
     local wine_version=$(wine --version)
     
-    if [ $wine_version == "wine-3.4" ];then
+    if [ "$wine_version" == "wine-3.4" ];then
         show_message "wine 3.4 is configured..."
     else
         error "wine 3.4 config is wrong"
@@ -240,7 +240,7 @@ function install_wine34(){
     local filemd5="72b485c28e40bba2b73b0d4c0c29a15f" 
     local filelink="http://www.playonlinux.com/wine/binaries/phoenicis/upstream-linux-amd64/PlayOnLinux-wine-3.4-upstream-linux-amd64.tar.gz"
     download_component $filepath $filemd5 $filelink $filename 
-    tar -xzf $filepath -C $WINE_PATH
+    tar -xzf "$filepath" -C "$WINE_PATH"
     show_message "wine 3.4 installed..."
     unset filename filepath filemd5 filelink
 }
@@ -256,7 +256,7 @@ function download_component(){
             local FILE_ID=$(md5sum $1 | cut -d" " -f1)
             if [ "$FILE_ID" == $2 ];then
                 show_message "\033[1;36m$4\e[0m detected"
-                return 1
+                return 0
             else
                 show_message "md5 is not match"
                 rm $1 
