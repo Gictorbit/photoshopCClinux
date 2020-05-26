@@ -1,87 +1,16 @@
-#!/usr/bin/env bash
 
-function main(){
-    
-    SCR_PATH="$HOME/.photoshopCCV19"
-    CACHE_PATH="$HOME/.cache/photoshopCCV19"
-    
-    mkdir -p $SCR_PATH
-    mkdir -p $CACHE_PATH
-    
-    setup_log "================| script executed |================"
-    
-    check_arg $1
-    is64
-
-    #make sure aria2c and wine package is already installed 
-    package_installed aria2c
-    package_installed wine
-    package_installed md5sum
-    package_installed winetricks
-
-    #delete wine3.4 dir if exist then create it
-    WINE_PATH="$SCR_PATH/wine-3.4"
-    rmdir_if_exist $WINE_PATH
-
-    RESOURCES_PATH="$SCR_PATH/resources"
-    WINE_PREFIX="$SCR_PATH/prefix"
-
-    #install wine 3.4
-    install_wine34
-    
-    #create new wine prefix for photoshop
-    rmdir_if_exist $WINE_PREFIX
-    
-    #export necessary variable for wine 3.4
-    export_var
-    
-    #config wine prefix and install mono and gecko automatic
-    echo -e "\033[1;93mplease allow mono and gecko packages to be installed automatically\e[0m"
-    echo -e "\033[1;93mif they're not already installed then click on OK button\e[0m"
-    winecfg 2> "$SCR_PATH/wine-error.log"
-    if [ $? -eq 0 ];then
-        show_message "prefix configured..."
-        sleep 5
+function package_installed(){
+    local which=$(which $1 2>/dev/null)
+    if [ "$which" == "/usr/bin/$1" ];then
+        show_message "package\033[1;36m $1\e[0m is installed..."
     else
-        error "prefix config failed :("
+        warning "package\033[1;33m $1\e[0m is not installed.\nplease make sure it's already installed"
+        ask_question "would you continue?" "N"
+        if [ "$question_result" == "no" ];then
+            echo "exit..."
+            exit 5
+        fi
     fi
-    
-    if [ -f "$WINE_PREFIX/user.reg" ];then
-        #add necessary dlls
-        append_DLL
-        sleep 4
-        #add dark mod
-        set_dark_mod
-    else
-        error "user.reg Not Found :("
-    fi
-   
-    #create resources directory 
-    rmdir_if_exist $RESOURCES_PATH
-
-    # winetricks atmlib corefonts fontsmooth=rgb gdiplus vcrun2008 vcrun2010 vcrun2012 vcrun2013 vcrun2015 atmlib msxml3 msxml6 gdiplus
-    winetricks atmlib fontsmooth=rgb vcrun2008 vcrun2010 vcrun2012 vcrun2013 vcrun2015 atmlib msxml3 msxml6
-    #install photoshop
-    sleep 3
-    install_photoshopSE
-    sleep 5
-
-    echo -e "\033[1;93mSelect \"Windwos 7\"for windows version and then click OK\e[0m"
-    winecfg
-    
-    replacement
-
-    if [ -d $RESOURCES_PATH ];then
-        show_message "deleting resources folder"
-        rm -rf $RESOURCES_PATH
-    else
-        error "resources folder Not Found"
-    fi
-
-    launcher
-    show_message "\033[1;33mwhen you run photoshop for the first time it may take a while\e[0m"
-    show_message "Almost Finish..."
-    sleep 30
 }
 
 function setup_log(){
@@ -99,9 +28,22 @@ function error(){
     exit 1
 }
 
+function error2(){
+    echo -e "\033[1;31merror:\e[0m $@"
+    exit 1
+}
+
 function warning(){
     echo -e "\033[1;33mWarning:\e[0m $@"
     setup_log "$@"
+}
+
+function warning2(){
+    echo -e "\033[1;33mWarning:\e[0m $@"
+}
+
+function show_message2(){
+    echo -e "$@"
 }
 
 function launcher(){
@@ -178,7 +120,7 @@ function install_photoshopSE(){
 
     mkdir "$RESOURCES_PATH/photoshopCC"
     show_message "extract photoshop..."
-    tar -xzf $filepath -C "$RESOURCES_PATH/photoshopCC"
+    tar -xzf "$filepath" -C "$RESOURCES_PATH/photoshopCC"
 
     echo "===============| photoshop CC v19 |===============" >> "$SCR_PATH/wine-error.log"
     show_message "install photoshop..."
@@ -277,7 +219,7 @@ function export_var(){
     export WINEPREFIX="$WINE_PREFIX"
     export PATH="$WINE_PATH/bin:$PATH"
     export LD_LIBRARY_PATH="$WINE_PATH/lib:$LD_LIBRARY_PATH"
-    # export WINEDLLOVERRIDES="winemenubuilder.exe=d"
+    export WINEDLLOVERRIDES="winemenubuilder.exe=d"
     export WINESERVER="$WINE_PATH/bin/wineserver"
     export WINELOADER="$WINE_PATH/bin/wine"
     export WINEDLLPATH="$WINE_PATH/lib/wine"
@@ -285,13 +227,12 @@ function export_var(){
     show_message "wine variables exported..."
     local wine_version=$(wine --version)
     
-    if [ $wine_version == "wine-3.4" ];then
+    if [ "$wine_version" == "wine-3.4" ];then
         show_message "wine 3.4 is configured..."
     else
         error "wine 3.4 config is wrong"
     fi
 }
-
 
 function install_wine34(){
     local filename="wine-3.4.tgz"
@@ -299,7 +240,7 @@ function install_wine34(){
     local filemd5="72b485c28e40bba2b73b0d4c0c29a15f" 
     local filelink="http://www.playonlinux.com/wine/binaries/phoenicis/upstream-linux-amd64/PlayOnLinux-wine-3.4-upstream-linux-amd64.tar.gz"
     download_component $filepath $filemd5 $filelink $filename 
-    tar -xzf $filepath -C $WINE_PATH
+    tar -xzf "$filepath" -C "$WINE_PATH"
     show_message "wine 3.4 installed..."
     unset filename filepath filemd5 filelink
 }
@@ -315,7 +256,7 @@ function download_component(){
             local FILE_ID=$(md5sum $1 | cut -d" " -f1)
             if [ "$FILE_ID" == $2 ];then
                 show_message "\033[1;36m$4\e[0m detected"
-                return 1
+                return 0
             else
                 show_message "md5 is not match"
                 rm $1 
@@ -361,13 +302,22 @@ function is64(){
    show_message "is64 checked..."
 }
 
-function package_installed(){
-    local which=$(which $1 2>/dev/null)
-    if [ "$which" == "/usr/bin/$1" ];then
-        show_message "package\033[1;36m $1\e[0m is installed..."
-    else
-        error "package\033[1;33m $1\e[0m is not installed.\nplease install it and Try again"
+#parameters [Message] [default flag [Y/N]]
+function ask_question(){
+    question_result=""
+    if [ "$2" == "Y" ];then
+        read -r -p "$1 [Y/n] " response
+        if [[ "$response" =~ $(locale noexpr) ]];then
+            question_result="no"
+        else
+            question_result="yes"
+        fi
+    elif [ "$2" == "N" ];then
+        read -r -p "$1 [N/y] " response
+        if [[ "$response" =~ $(locale yesexpr) ]];then
+            question_result="yes"
+        else
+            question_result="no"
+        fi
     fi
 }
-
-main $# $@
