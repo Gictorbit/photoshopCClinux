@@ -47,13 +47,21 @@ function show_message2(){
 }
 
 function launcher(){
+    
+    #create launcher script
     local launcher_path="$PWD/launcher.sh"
-    rmdir_if_exist "$SCR_PATH/launcher"
+    local launcher_dest="$SCR_PATH/launcher"
+    rmdir_if_exist "$launcher_dest"
+
 
     if [ -f "$launcher_path" ];then
         show_message "launcher.sh detected..."
-        cp "$launcher_path" "$SCR_PATH/launcher" || error "can't copy launcher"
-        chmod +x "$SCR_PATH/launcher/launcher.sh"
+        
+        cp "$launcher_path" "$launcher_dest" || error "can't copy launcher"
+        
+        sed -i "s|pspath|$SCR_PATH|g" "$launcher_dest/launcher.sh" && sed -i "s|pscache|$CACHE_PATH|g" "$launcher_dest/launcher.sh" || error "can't edit launcher script"
+        
+        chmod +x "$SCR_PATH/launcher/launcher.sh" || error "can't chmod launcher script"
     else
         error "launcher.sh Note Found"
     fi
@@ -70,7 +78,7 @@ function launcher(){
             sudo rm "$desktop_entry_dest"
         fi
         sudo cp "$desktop_entry" "/usr/share/applications" || error "can't copy desktop entry"
-        sudo sed -i "s|gictorbit|$HOME|g" "$desktop_entry_dest" || error "can't edit desktop entry"
+        sudo sed -i "s|pspath|$SCR_PATH|g" "$desktop_entry_dest" || error "can't edit desktop entry"
     else
         error "desktop entry Not Found"
     fi
@@ -83,7 +91,7 @@ function launcher(){
     fi
     sudo ln -s "$SCR_PATH/launcher/launcher.sh" "/usr/local/bin/photoshop" || error "can't create photoshop command"
 
-    unset desktop_entry desktop_entry_dest launcher_path
+    unset desktop_entry desktop_entry_dest launcher_path launcher_dest
 }
 
 function replacement(){
@@ -274,19 +282,54 @@ function download_component(){
 
 function rmdir_if_exist(){
     if [ -d "$1" ];then
-        rm -rf $1
+        rm -rf "$1"
         show_message "\033[0;36m$1\e[0m directory exists deleting it..."
     fi
-    mkdir $1
+    mkdir "$1"
     show_message "create\033[0;36m $1\e[0m directory..."
 }
 
 function check_arg(){
-    if [ $1 != 0 ]
-    then
-        error "It haven't any parameter just execute script"
+    while getopts "hd:c:" OPTION; do
+        case $OPTION in
+        d)
+            PARAMd="$OPTARG"
+            SCR_PATH=$(readlink -f "$PARAMd")
+            
+            dashd=1
+            echo "install path is $SCR_PATH"
+            ;;
+        c)
+            PARAMc="$OPTARG"
+            CACHE_PATH=$(readlink -f "$PARAMc")
+            dashc=1
+            echo "cahce is $CACHE_PATH"
+            ;;
+        h)
+            usage
+            ;; 
+        *)
+            echo "wrong argument"
+            exit 1
+            ;;
+        esac
+    done
+    shift $(($OPTIND - 1))
+
+    if [[ $# != 0 ]];then
+        usage
+        error2 "unknown argument"
     fi
-    show_message "argument checked..."
+
+    if [[ $dashd != 1 ]] ;then
+        echo "-d not define default directory used..."
+        SCR_PATH="$HOME/.photoshopCCV19"
+    fi
+
+    if [[ $dashc != 1 ]];then
+        echo "-c not define default directory used..."
+        CACHE_PATH="$HOME/.cache/photoshopCCV19"
+    fi
 }
 
 function is64(){
@@ -320,4 +363,22 @@ function ask_question(){
             question_result="no"
         fi
     fi
+}
+
+function usage(){
+    echo "USAGE: [-c cache directory] [-d installation directory]"
+}
+
+function save_paths(){
+    local datafile="$HOME/.psdata.txt"
+    echo "$SCR_PATH" > "$datafile"
+    echo "$CACHE_PATH" >> "$datafile"
+    unset datafile
+}
+
+function load_paths(){
+    local datafile="$HOME/.psdata.txt"
+    SCR_PATH=$(head -n 1 "$datafile")
+    CACHE_PATH=$(tail -n 1 "$datafile")
+    unset datafile
 }

@@ -1,7 +1,7 @@
 [Desktop Entry]
 Encoding=UTF-8
 Name=photoshop 
-Exec=bash gictorbit/.photoshopCCV19/launcher/launcher.sh
+Exec=bash pspath/launcher/launcher.sh
 Type=Application
 StartupNotify=true
 Comment=photoshop cc for linux

@@ -6,8 +6,10 @@ fi
 
 notify-send "photoshop started" -i "photoshop"
 
-SCR_PATH="$HOME/.photoshopCCV19"
-CACHE_PATH="$HOME/.cache/photoshopCCV19"
+# SCR_PATH="$HOME/.photoshopCCV19"
+# CACHE_PATH="$HOME/.cache/photoshopCCV19"
+SCR_PATH="pspath"
+CACHE_PATH="pscache"
 
 WINE_PATH="$SCR_PATH/wine-3.4"
 
@@ -23,4 +25,4 @@ export WINESERVER="$WINE_PATH/bin/wineserver"
 export WINELOADER="$WINE_PATH/bin/wine"
 export WINEDLLPATH="$WINE_PATH/lib/wine"
 
-wine $HOME/.photoshopCCV19/prefix/drive_c/users/$USER/PhotoshopSE/Photoshop.exe
+wine "$SCR_PATH/prefix/drive_c/users/$USER/PhotoshopSE/Photoshop.exe"

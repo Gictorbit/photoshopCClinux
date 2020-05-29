@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
-main(){
-    check_arg $1
-    SCR_PATH="$HOME/.photoshopCCV19"
-    CACHE_PATH="$HOME/.cache/photoshopCCV19"
+
+source "sharedFuncs.sh"
+
+main(){    
 
     CMD_PATH="/usr/local/bin/photoshop"
     ENTRY_PATH="/usr/share/applications/photoshop.desktop"
@@ -18,7 +18,7 @@ main(){
     #remove photoshop directory
     if [ -d "$SCR_PATH" ];then
         echo "remove photoshop directory..."
-        rm -rf "$SCR_PATH" || error "couldn't remove photoshop directory"
+        rm -r "$SCR_PATH" || error2 "couldn't remove photoshop directory"
         sleep 4
     else
         echo "photoshop directory Not Found!"
@@ -28,7 +28,7 @@ main(){
     #Unlink command 
     if [ -L "$CMD_PATH" ];then
         echo "remove launcher command..."
-        sudo unlink "$CMD_PATH" || error "couln't remove launcher command"
+        sudo unlink "$CMD_PATH" || error2 "couln't remove launcher command"
     else
         echo "launcher command Not Found!"
     fi
@@ -36,7 +36,8 @@ main(){
     #delete desktop entry
     if [ -f "$ENTRY_PATH" ];then
         echo "remove dekstop entry...."
-        sudo rm "$ENTRY_PATH" || error "couldn't remove desktop entry"
+        echo "$SCR_PATH"
+        sudo rm "$ENTRY_PATH" || error2 "couldn't remove desktop entry"
     else
         echo "desktop entry Not Found!"
     fi
@@ -49,7 +50,7 @@ main(){
         echo "--------------------------------"
         ask_question "would you delete cache directory?" "N"
         if [ "$result" == "yes" ];then
-            rm -rf "$CACHE_PATH" || error "couldn't remove cache directory"
+            rm -rf "$CACHE_PATH" || error2 "couldn't remove cache directory"
         else
             echo "nice, you can copy component data and use them later for photoshop installation"
         fi
@@ -57,17 +58,6 @@ main(){
         echo "cache directory Not Found!"    
     fi
 
-}
-
-function error(){
-    echo -e "\033[1;31merror:\e[0m $@"
-    exit 1
-}
-
-function check_arg(){
-    if [ $1 != 0 ];then
-        error "please just run script without any argument"
-    fi
 }
 
 #parameters [Message] [default flag [Y/N]]
@@ -90,4 +80,5 @@ function ask_question(){
     fi
 }
 
-main $# $@
+load_paths
+main

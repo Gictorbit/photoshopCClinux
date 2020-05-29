@@ -1,18 +1,13 @@
 #!/usr/bin/env bash
+source "sharedFuncs.sh"
 
 function main(){
-
-    source "sharedFuncs.sh"
-    
-    SCR_PATH="$HOME/.photoshopCCV19"
-    CACHE_PATH="$HOME/.cache/photoshopCCV19"
     
     mkdir -p $SCR_PATH
     mkdir -p $CACHE_PATH
     
     setup_log "================| script executed |================"
-    
-    check_arg $1
+
     is64
 
     #make sure aria2c and wine package is already installed 
@@ -63,6 +58,7 @@ function main(){
 
     # winetricks atmlib corefonts fontsmooth=rgb gdiplus vcrun2008 vcrun2010 vcrun2012 vcrun2013 vcrun2015 atmlib msxml3 msxml6 gdiplus
     winetricks atmlib fontsmooth=rgb vcrun2008 vcrun2010 vcrun2012 vcrun2013 vcrun2015 atmlib msxml3 msxml6
+    
     #install photoshop
     sleep 3
     install_photoshopSE
@@ -86,4 +82,6 @@ function main(){
     sleep 30
 }
 
-main $# $@
+check_arg $@
+save_paths
+main

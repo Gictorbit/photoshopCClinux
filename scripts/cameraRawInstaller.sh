@@ -3,8 +3,7 @@ function main(){
     
     source "sharedFuncs.sh"
 
-    SCR_PATH="$HOME/.photoshopCCV19"
-    CACHE_PATH="$HOME/.cache/photoshopCCV19" 
+    load_paths
     WINE_PATH="$SCR_PATH/wine-3.4"
     WINE_PREFIX="$SCR_PATH/prefix"
 

@@ -1,18 +1,14 @@
 #!/usr/bin/env bash
 
-function main(){
-    
-    source "sharedFuncs.sh"
+source "sharedFuncs.sh"
 
-    SCR_PATH="$HOME/.photoshopCCV19"
-    CACHE_PATH="$HOME/.cache/photoshopCCV19"
+function main(){
     
     mkdir -p $SCR_PATH
     mkdir -p $CACHE_PATH
     
     setup_log "================| script executed |================"
     
-    check_arg $1
     is64
 
     #make sure aria2c and wine package is already installed 
@@ -227,4 +223,6 @@ function install_vcrun2008(){
     unset filename filemd5 filelink filepath
 }
 
-main $# $@
+check_arg $@
+save_paths
+main
