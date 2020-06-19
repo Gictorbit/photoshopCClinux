@@ -60,6 +60,22 @@ then you can easily run `setup.sh` script to install photoshop cc on your linux 
 chmod +x setup.sh
 ./setup.sh
 ```
+
+you can use `-d` switch to specify installation path, and `-c` for the cache directory.
+for example:
+```bash
+./PhotoshopSetupCustom.sh -d /mnt/myfiles/photoshop
+```
+or
+```bash
+./PhotoshopSetup.sh -d /mnt/myfiles/photoshop -c /mnt/cache
+```
+if you don't use it, installer script uses the default path
+also, uninstaller script and others will detect your custom path so there is no problem
+I recommend just use `-d` argument and use default cache directory
+this feature is under test after testing I'll add it to `setup.sh`
+
+
 <div align="center" class="tip" markdown="1" style>
 
 ![setup-screenshot](images/setup-screenshot.png)
