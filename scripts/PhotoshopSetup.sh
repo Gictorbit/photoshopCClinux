@@ -33,8 +33,7 @@ function main(){
     export_var
     
     #config wine prefix and install mono and gecko automatic
-    echo -e "\033[1;93mplease allow mono and gecko packages to be installed automatically\e[0m"
-    echo -e "\033[1;93mif they're not already installed then click on OK button\e[0m"
+    echo -e "\033[1;93mplease install mono and gecko packages then click on ok button\e[0m"
     winecfg 2> "$SCR_PATH/wine-error.log"
     if [ $? -eq 0 ];then
         show_message "prefix configured..."
