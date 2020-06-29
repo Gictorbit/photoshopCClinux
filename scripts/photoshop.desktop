@@ -1,11 +1,11 @@
 [Desktop Entry]
 Encoding=UTF-8
-Name=photoshop 
+Name=Photoshop CC
 Exec=bash pspath/launcher/launcher.sh
 Type=Application
 StartupNotify=true
-Comment=photoshop cc for linux
+Comment=Photoshop CC for Linux
 Icon=photoshop
-Name[fr_FR]=PhotoshopCC
+Name[fr_FR]=Photoshop CC
 
 
