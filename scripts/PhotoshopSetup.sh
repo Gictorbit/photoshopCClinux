@@ -63,7 +63,7 @@ function main(){
     install_photoshopSE
     sleep 5
 
-    echo -e "\033[1;93mSelect \"Windwos 7\" for windows version and then click OK\e[0m"
+    echo -e "\033[1;93mSelect \"Windows 7\" for windows version and then click OK\e[0m"
     winecfg
     
     replacement
@@ -77,7 +77,7 @@ function main(){
 
     launcher
     show_message "\033[1;33mwhen you run photoshop for the first time it may take a while\e[0m"
-    show_message "Almost Finish..."
+    show_message "Almost finished..."
     sleep 30
 }
 

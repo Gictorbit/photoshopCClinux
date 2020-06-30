@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 if [ $# -ne 0 ];then
-    echo "I havn't any parameter just run script without argument"
+    echo "I have no parameters just run the script without arguments"
     exit 1
 fi
 
-notify-send "photoshop started" -i "photoshop"
+notify-send "Photoshop CC started." -i "photoshop"
 
 # SCR_PATH="$HOME/.photoshopCCV19"
 # CACHE_PATH="$HOME/.cache/photoshopCCV19"
