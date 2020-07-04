@@ -33,7 +33,7 @@ and sets some necessary component up for best performance
 
 if they are not already installed you can install them using your package manager for example in arch Linux
 ```bash
-sudo pacman -Syy wine aria2
+sudo pacman -S wine aria2 winetricks
 ``` 
 3- make sure you have enogh storage in your `/home` partition about `5 GiB`
 > 1 GiB will be free after installation
