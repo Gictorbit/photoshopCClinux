@@ -1,8 +1,8 @@
 ---
-name: Installer Script Bug
+name: photoshop issue report
 about: Create a report to help us improve
 title: ''
-labels: installer script bug
+labels: photoshop issue
 assignees: ''
 
 ---
