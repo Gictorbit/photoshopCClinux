@@ -16,6 +16,7 @@ A clear and concise description of what the bug is.
  - Installation method:[e.g.1-photoshopSetup.sh or 2-photoshopSetupCustom.sh ]
  - gpu: [model of your graphics card on your Laptop powered by Linux e.g. intel,Nvidia,and] you can check with command lspci | grep -i --color 'vga\|3d\|2d'
  - display server: [e.g. X11,Wayland]
+
 **Additional context**
 Add any other context about the problem here.
 
