@@ -2,7 +2,7 @@
                      ┃                                                                           ┃
   ███████████████████████████     1- Install photoshop CC             (using winetricks)         ┃
   ██                       ██                                                                    ┃
-  ██  ███████▆▃            ██     2- Install photoshop CC             (using custome script)     ┃
+  ██  ███████▆▃            ██     2- Install photoshop CC             (using custom script)      ┃
   ██  ███   ▝██▙           ██                                                                    ┃
   ██  ███    ███           ██     3- Install adobe camera raw v12                                ┃
   ██  ███   ▟██▛▗▟████▙    ██                                                                    ┃
