@@ -24,7 +24,7 @@ and sets some necessary component up for best performance
 ## :warning: Requirements
 1- use 64bit edition of your distro
 
-2-make sure below packages are already installed on your Linux distro
+2-make sure following packages are already installed on your Linux distro
 * `wine`
 * `winetricks`
 * `aria2c`
@@ -92,7 +92,7 @@ during installation please pay attention to script messages
 for components installation you have two options, using winetricks or using custom way.
 
 ### :one: component installation using winetricks (Recommended)
-for installing photoshop just run the bash script with below command it downloads and installs photoshop include its component using winetricks and configures wine automatically
+for installing photoshop just run the bash script with following command, it downloads and installs photoshop include its component using winetricks and configures wine automatically
 
 ```bash
 chmod +x PhotoshopSetup.sh
@@ -100,7 +100,7 @@ chmod +x PhotoshopSetup.sh
 ```
 
 ### :two: component installation using custom script
-for installing photoshop just run the bash script with below command it downloads and installs photoshop include its component and configures wine automatically
+for installing photoshop just run the bash script with the command below. it downloads and installs photoshop include its component and configures wine automatically
 
 ```bash
 chmod +x PhotoshopSetupCustom.sh
@@ -111,7 +111,7 @@ chmod +x PhotoshopSetupCustom.sh
 
 
 ## :wine_glass: wineprefix Configuration
-if you need to configure wineprefix of photoshop you can use `winecfg.sh` script just run below command
+if you need to configure wineprefix of photoshop you can use `winecfg.sh` script just run command below
 ```bash
 chmod +x winecfg.sh
 ./winecfg.sh
@@ -126,7 +126,7 @@ if you get some errors during working with these tools
 It may because of the graphics card.</br>
 
 photoshop uses the `GPU` to process these tools so before using these tools make sure that your graphics card `(Nvidia, AMD)` is configured correctly in your Linux machine.
-</br>The other solution is you can configure photoshop to use `CPU` for image processing. to do that, follow the below steps:
+</br>The other solution is you can configure photoshop to use `CPU` for image processing. to do that, follow the steps below:
 
 * go to edit tab and open `preferences` or `[ctrl+K]`
 * then go to the `performance` tab
@@ -139,7 +139,7 @@ photoshop uses the `GPU` to process these tools so before using these tools make
 <details>
 <summary>:camera: Adobe Camera Raw</summary>
 
-another useful adobe software is `camera raw` if you want to work with it beside photoshop you must install it separately to do this, after photoshop installation run `cameraRawInstaller.sh` script with below commands:
+another useful adobe software is `camera raw` if you want to work with it beside photoshop you must install it separately to do this, after photoshop installation run `cameraRawInstaller.sh` script with commands below:
 ```bash
 chmod +x cameraRawInstaller.sh
 ./cameraRawInstaller.sh
@@ -155,7 +155,7 @@ then restart photoshop.you can open it from
 </details>
 
 ## :hotsprings: Uninstall
-for uninstall photoshop you can use uninstaller script with below commands
+for uninstall photoshop you can use uninstaller script with commands below
 
 ```bash
 chmod +x uninstaller.sh
