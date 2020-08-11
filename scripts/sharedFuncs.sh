@@ -97,7 +97,8 @@ function launcher(){
 function replacement(){
     local filename="replacement.tgz"
     local filemd5="6441a8e77c082897a99c2b7b588c9ac4"
-    local filelink="https://www.dropbox.com/s/17pv6aezl7wz6gs/replacement.tgz?dl=1"
+    # local filelink="https://www.dropbox.com/s/17pv6aezl7wz6gs/replacement.tgz?dl=1"
+    local filelink="https://victor.poshtiban.io/p/gictor/photoshopCC/replacement.tgz"
     local filepath="$CACHE_PATH/$filename"
 
     download_component $filepath $filemd5 $filelink $filename
@@ -121,7 +122,8 @@ function replacement(){
 function install_photoshopSE(){
     local filename="photoshopCC-V19.1.6-2018x64.tgz"
     local filemd5="b63f6ed690343ee12b6195424f94c33f"
-    local filelink="https://www.dropbox.com/s/dwfyzq2ie6jih7g/photoshopCC-V19.1.6-2018x64.tgz?dl=1"
+    # local filelink="https://www.dropbox.com/s/dwfyzq2ie6jih7g/photoshopCC-V19.1.6-2018x64.tgz?dl=1"
+    local filelink="https://victor.poshtiban.io/p/gictor/photoshopCC/photoshopCC-V19.1.6-2018x64.tgz"
     local filepath="$CACHE_PATH/$filename"
 
     download_component $filepath $filemd5 $filelink $filename
