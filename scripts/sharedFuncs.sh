@@ -258,7 +258,7 @@ function download_component(){
     local tout=0
     while true;do
         if [ $tout -ge 2 ];then
-            error "sorry somthing went wrong during download $4"
+            error "sorry something went wrong during download $4"
         fi
         if [ -f $1 ];then
             local FILE_ID=$(md5sum $1 | cut -d" " -f1)
