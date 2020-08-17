@@ -28,14 +28,14 @@ main(){
     #Unlink command 
     if [ -L "$CMD_PATH" ];then
         echo "remove launcher command..."
-        sudo unlink "$CMD_PATH" || error2 "couln't remove launcher command"
+        sudo unlink "$CMD_PATH" || error2 "couldn't remove launcher command"
     else
         echo "launcher command Not Found!"
     fi
 
     #delete desktop entry
     if [ -f "$ENTRY_PATH" ];then
-        echo "remove dekstop entry...."
+        echo "remove desktop entry...."
         echo "$SCR_PATH"
         sudo rm "$ENTRY_PATH" || error2 "couldn't remove desktop entry"
     else
