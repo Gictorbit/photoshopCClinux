@@ -165,3 +165,8 @@ chmod +x uninstaller.sh
 
 ## :bookmark: License
 ![GitHub](https://img.shields.io/github/license/Gictorbit/photoshopCClinux?style=for-the-badge)
+
+---
+<a href="https://poshtiban.com">
+<img src="images/poshtibancom.png" width="30%">
+</a>
