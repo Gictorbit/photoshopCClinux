@@ -35,7 +35,7 @@ if they are not already installed you can install them using your package manage
 ```bash
 sudo pacman -S wine aria2 winetricks
 ``` 
-3- make sure you have enogh storage in your `/home` partition about `5 GiB`
+3- make sure you have enough storage in your `/home` partition about `5 GiB`
 > 1 GiB will be free after installation
 
 4- make sure you have internet connection and about 1.5 Gib traffic for downloading photoshop and its components at first time
