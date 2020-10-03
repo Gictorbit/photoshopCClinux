@@ -19,7 +19,7 @@ and sets some necessary component up for best performance
 * detects various graphic cards like (`intel`, `Nvidia`...)
 * saves the downloaded files in your cache directory
 * It's free and you will not need any license key
-* works on any Linux distributions
+* works on any Linux distribution
 
 ## :warning: Requirements
 1- use 64bit edition of your distro
