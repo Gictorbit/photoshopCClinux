@@ -6,7 +6,5 @@ Type=Application
 StartupNotify=false
 Comment=Photoshop CC for Linux
 Icon=application-photoshop
-Name[fr_FR]=Photoshop CC
+Name=Photoshop CC
 Categories=Graphics;
-
-
