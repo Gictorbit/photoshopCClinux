@@ -9,22 +9,22 @@
 
 # photohop CC v19 installer for linux
 This bash script installs Photoshop CC version 19 on your Linux machine using wine behind the scene
-and sets some necessary component up for best performance
+and sets some necessary components up for the best performance
 
 ## :rocket: Features
-* downloads necessary component and installs them (`vcrun`,`atmlib`,`msxml`...)
+* downloads necessary components and installs them (`vcrun`,`atmlib`,`msxml`...)
 * downloads photoshop.exe installer and installs it automatically
-* creates photoshop commands and desktop entry
+* creates photoshop commands and a desktop entry
 * configures wine for dark mode
 * detects various graphic cards like (`intel`, `Nvidia`...)
 * saves the downloaded files in your cache directory
 * It's free and you will not need any license key
-* works on any Linux distributions
+* works on any Linux distribution
 
 ## :warning: Requirements
-1- use 64bit edition of your distro
+1- use a 64bit edition of your distro
 
-2-make sure following packages are already installed on your Linux distro
+2-make sure the following packages are already installed on your Linux distro
 * `wine`
 * `winetricks`
 * `aria2c`
@@ -35,10 +35,10 @@ if they are not already installed you can install them using your package manage
 ```bash
 sudo pacman -S wine aria2 winetricks
 ``` 
-3- make sure you have enogh storage in your `/home` partition about `5 GiB`
+3- make sure you have enough storage in your `/home` partition about `5 GiB`
 > 1 GiB will be free after installation
 
-4- make sure you have internet connection and about 1.5 Gib traffic for downloading photoshop and its components at first time
+4- make sure you have an internet connection and about 1.5 Gib traffic to download photoshop and its components
 
 ## :computer: Installation
 
@@ -47,7 +47,7 @@ there are two installation scripts
 * `PhotoshopSetup.sh`
 * `PhotoshopSetupCustom.sh` (Recommended)
 
-installer scripts use a virtual drive of wine and makes a new `winprefix` for photoshop
+the installer scripts use a virtual drive of wine and makes a new `winprefix` for photoshop
 
 first of all you need to clone the repository with this command:
 ```bash
@@ -61,7 +61,7 @@ chmod +x setup.sh
 ./setup.sh
 ```
 
-you can use `-d` switch to specify installation path, and `-c` for the cache directory.
+you can use `-d` to specify the installation path, and `-c` for the cache directory.
 for example:
 ```bash
 ./PhotoshopSetupCustom.sh -d /mnt/myfiles/photoshop
@@ -70,10 +70,10 @@ or
 ```bash
 ./PhotoshopSetup.sh -d /mnt/myfiles/photoshop -c /mnt/cache
 ```
-if you don't use it, installer script uses the default path
-also, uninstaller script and others will detect your custom path so there is no problem
-I recommend just use `-d` argument and use default cache directory
-this feature is under test after testing I'll add it to `setup.sh`
+when no options are given, the installer script will use the default path, 
+the uninstaller script and others will detect your custom path so there is no problem,
+I recommend using the `-d` option  and having the default cache directory.
+this feature is currently being tested, and will later be added to `setup.sh`
 
 
 <div align="center" class="tip" markdown="1" style>
@@ -81,7 +81,7 @@ this feature is under test after testing I'll add it to `setup.sh`
 ![setup-screenshot](images/setup-screenshot.png)
 </div>
 
-during installation please pay attention to script messages
+during installation please pay attention to the script messages
 
 > **NOTE :** make sure OS version in wine is on windows 7
 
@@ -92,7 +92,7 @@ during installation please pay attention to script messages
 for components installation you have two options, using winetricks or using custom way.
 
 ### :one: component installation using winetricks (Recommended)
-for installing photoshop just run the bash script with following command, it downloads and installs photoshop include its component using winetricks and configures wine automatically
+for installing photoshop just run the bash script with following command, it downloads and installs photoshop includes its component using winetricks and configures wine automatically
 
 ```bash
 chmod +x PhotoshopSetup.sh
@@ -111,7 +111,7 @@ chmod +x PhotoshopSetupCustom.sh
 
 
 ## :wine_glass: wineprefix Configuration
-if you need to configure wineprefix of photoshop you can use `winecfg.sh` script just run command below
+if you need to configure the wineprefix of photoshop you can use `winecfg.sh` script just run the command below
 ```bash
 chmod +x winecfg.sh
 ./winecfg.sh
@@ -122,11 +122,11 @@ chmod +x winecfg.sh
 <summary>:sparkles: Liquify Tools</summary>
 as you know photoshop has many useful tools like `Liquify Tools`.</br>
 
-if you get some errors during working with these tools
+if you get some errors while working with these tools,
 It may because of the graphics card.</br>
 
 photoshop uses the `GPU` to process these tools so before using these tools make sure that your graphics card `(Nvidia, AMD)` is configured correctly in your Linux machine.
-</br>The other solution is you can configure photoshop to use `CPU` for image processing. to do that, follow the steps below:
+</br>The other solution is you can configure photoshop to use your `CPU` for image processing. to do that, follow the steps below:
 
 * go to edit tab and open `preferences` or `[ctrl+K]`
 * then go to the `performance` tab
@@ -155,7 +155,7 @@ then restart photoshop.you can open it from
 </details>
 
 ## :hotsprings: Uninstall
-for uninstall photoshop you can use uninstaller script with commands below
+to uninstall photoshop you can use the uninstaller script with commands below
 
 ```bash
 chmod +x uninstaller.sh
