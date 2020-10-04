@@ -1,7 +1,7 @@
-
 function package_installed(){
-    local which=$(which $1 2>/dev/null)
-    if [ "$which" == "/usr/bin/$1" ];then
+    which $1 &> /dev/null
+    local status=$?
+    if [ $status -eq 0 ];then
         show_message "package\033[1;36m $1\e[0m is installed..."
     else
         warning "package\033[1;33m $1\e[0m is not installed.\nplease make sure it's already installed"
