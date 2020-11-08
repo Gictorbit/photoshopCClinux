@@ -7,12 +7,12 @@
 ![GitHub stars](https://img.shields.io/github/stars/Gictorbit/photoshopCClinux?style=sad) ![rep size](https://img.shields.io/github/repo-size/gictorbit/photoshopCClinux) ![bash](https://img.shields.io/badge/bash-5.0.11-yellowgreen)
 </div>
 
-# photohop CC v19 installer for linux
+# Photoshop CC v19 installer for Linux
 This bash script installs Photoshop CC version 19 on your Linux machine using wine behind the scene
 and sets some necessary components up for the best performance
 
 ## :rocket: Features
-* downloads necessary components and installs them (`vcrun`,`atmlib`,`msxml`...)
+* downloads necessary components and installs them (`vcrun`, `atmlib`, `msxml`...)
 * downloads photoshop.exe installer and installs it automatically
 * creates photoshop commands and a desktop entry
 * configures wine for dark mode
@@ -49,12 +49,12 @@ there are two installation scripts
 
 the installer scripts use a virtual drive of wine and makes a new `winprefix` for photoshop
 
-first of all you need to clone the repository with this command:
+first of all, you need to clone the repository with this command:
 ```bash
 git clone https://github.com/Gictorbit/photoshopCClinux.git
 cd photoshopCClinux
 ```
-then you can easily run `setup.sh` script to install photoshop cc on your linux distro
+then you can easily run `setup.sh` script to install photoshop cc on your Linux distro
 
 ```bash
 chmod +x setup.sh
