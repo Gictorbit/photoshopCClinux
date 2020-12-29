@@ -13,10 +13,10 @@ and sets some necessary components up for the best performance
 
 ## :rocket: Features
 * downloads necessary components and installs them (`vcrun`, `atmlib`, `msxml`...)
-* downloads photoshop.exe installer and installs it automatically
+* downloads `photoshop.exe` installer and installs it automatically
 * creates photoshop commands and a desktop entry
-* configures wine for dark mode
-* detects various graphic cards like (`intel`, `Nvidia`...)
+* wine dark mode
+* supports graphic cards like (`intel`, `Nvidia`)
 * saves the downloaded files in your cache directory
 * It's free and you will not need any license key
 * works on any Linux distribution
@@ -41,11 +41,6 @@ sudo pacman -S wine aria2 winetricks
 4- make sure you have an internet connection and about 1.5 Gib traffic to download photoshop and its components
 
 ## :computer: Installation
-
-there are two installation scripts
-
-* `PhotoshopSetup.sh`
-* `PhotoshopSetupCustom.sh` (Recommended)
 
 the installer scripts use a virtual drive of wine and makes a new `winprefix` for photoshop
 
@@ -91,20 +86,12 @@ during installation please pay attention to the script messages
 
 for components installation you have two options, using winetricks or using custom way.
 
-### :one: component installation using winetricks (Recommended)
-for installing photoshop just run the bash script with following command, it downloads and installs photoshop includes its component using winetricks and configures wine automatically
+### component installation using winetricks (Recommended)
+for installing photoshop just run the bash script with following command, it downloads and installs photoshop include its component using winetricks and configures wine automatically
 
 ```bash
 chmod +x PhotoshopSetup.sh
 ./PhotoshopSetup.sh
-```
-
-### :two: component installation using custom script
-for installing photoshop just run the bash script with the command below. it downloads and installs photoshop include its component and configures wine automatically
-
-```bash
-chmod +x PhotoshopSetupCustom.sh
-./PhotoshopSetupCustom.sh
 ```
 
 </details>
