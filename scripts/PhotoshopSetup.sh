@@ -16,15 +16,8 @@ function main(){
     package_installed md5sum
     package_installed winetricks
 
-    #delete wine3.4 dir if exist then create it
-    WINE_PATH="$SCR_PATH/wine-3.4"
-    rmdir_if_exist $WINE_PATH
-
     RESOURCES_PATH="$SCR_PATH/resources"
     WINE_PREFIX="$SCR_PATH/prefix"
-
-    #install wine 3.4
-    install_wine34
     
     #create new wine prefix for photoshop
     rmdir_if_exist $WINE_PREFIX
@@ -33,7 +26,7 @@ function main(){
     export_var
     
     #config wine prefix and install mono and gecko automatic
-    echo -e "\033[1;93mplease install mono and gecko packages then click on ok button\e[0m"
+    echo -e "\033[1;93mplease install mono and gecko packages then click on OK button\e[0m"
     winecfg 2> "$SCR_PATH/wine-error.log"
     if [ $? -eq 0 ];then
         show_message "prefix configured..."
@@ -43,9 +36,6 @@ function main(){
     fi
     
     if [ -f "$WINE_PREFIX/user.reg" ];then
-        #add necessary dlls
-        append_DLL
-        sleep 4
         #add dark mod
         set_dark_mod
     else
@@ -56,15 +46,12 @@ function main(){
     rmdir_if_exist $RESOURCES_PATH
 
     # winetricks atmlib corefonts fontsmooth=rgb gdiplus vcrun2008 vcrun2010 vcrun2012 vcrun2013 vcrun2015 atmlib msxml3 msxml6 gdiplus
-    winetricks atmlib fontsmooth=rgb vcrun2008 vcrun2010 vcrun2012 vcrun2013 vcrun2015 atmlib msxml3 msxml6
+    winetricks atmlib fontsmooth=rgb vcrun2008 vcrun2010 vcrun2012 vcrun2013 atmlib msxml3 msxml6
     
     #install photoshop
     sleep 3
     install_photoshopSE
     sleep 5
-
-    echo -e "\033[1;93mSelect \"Windows 7\" for windows version and then click OK\e[0m"
-    winecfg
     
     replacement
 

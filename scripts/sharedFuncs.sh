@@ -1,5 +1,5 @@
 
-function package_installed(){
+function package_installed() {
     local which=$(which $1 2>/dev/null)
     if [ "$which" == "/usr/bin/$1" ];then
         show_message "package\033[1;36m $1\e[0m is installed..."
@@ -13,40 +13,40 @@ function package_installed(){
     fi
 }
 
-function setup_log(){
+function setup_log() {
     echo -e "$(date) : $@" >> $SCR_PATH/setuplog.log
 }
 
-function show_message(){
+function show_message() {
     echo -e "$@"
     setup_log "$@"
 }
 
-function error(){
+function error() {
     echo -e "\033[1;31merror:\e[0m $@"
     setup_log "$@"
     exit 1
 }
 
-function error2(){
+function error2() {
     echo -e "\033[1;31merror:\e[0m $@"
     exit 1
 }
 
-function warning(){
+function warning() {
     echo -e "\033[1;33mWarning:\e[0m $@"
     setup_log "$@"
 }
 
-function warning2(){
+function warning2() {
     echo -e "\033[1;33mWarning:\e[0m $@"
 }
 
-function show_message2(){
+function show_message2() {
     echo -e "$@"
 }
 
-function launcher(){
+function launcher() {
     
     #create launcher script
     local launcher_path="$PWD/launcher.sh"
@@ -94,10 +94,9 @@ function launcher(){
     unset desktop_entry desktop_entry_dest launcher_path launcher_dest
 }
 
-function replacement(){
+function replacement() {
     local filename="replacement.tgz"
     local filemd5="6441a8e77c082897a99c2b7b588c9ac4"
-    # local filelink="https://www.dropbox.com/s/17pv6aezl7wz6gs/replacement.tgz?dl=1"
     local filelink="https://victor.poshtiban.io/p/gictor/photoshopCC/replacement.tgz"
     local filepath="$CACHE_PATH/$filename"
 
@@ -119,10 +118,9 @@ function replacement(){
     unset filename filemd5 filelink filepath
 }
 
-function install_photoshopSE(){
+function install_photoshopSE() {
     local filename="photoshopCC-V19.1.6-2018x64.tgz"
     local filemd5="b63f6ed690343ee12b6195424f94c33f"
-    # local filelink="https://www.dropbox.com/s/dwfyzq2ie6jih7g/photoshopCC-V19.1.6-2018x64.tgz?dl=1"
     local filelink="https://victor.poshtiban.io/p/gictor/photoshopCC/photoshopCC-V19.1.6-2018x64.tgz"
     local filepath="$CACHE_PATH/$filename"
 
@@ -143,7 +141,7 @@ function install_photoshopSE(){
     unset filename filemd5 filelink filepath
 }
 
-function set_dark_mod(){
+function set_dark_mod() {
     echo " " >> "$WINE_PREFIX/user.reg"
     local colorarray=(
         '[Control Panel\\Colors] 1491939580'
@@ -186,77 +184,13 @@ function set_dark_mod(){
     unset colorarray
 }
 
-function append_DLL(){ 
-    local dllarray=(
-        '[Software\\Wine\\DllOverrides] 1580889458'
-        '#time=1d5dbf9ef00b116'
-        '"*atl110"="native,builtin"'
-        '"*atl120"="native,builtin"'
-        '"*msvcp110"="native,builtin"'
-        '"*msvcp120"="native,builtin"'
-        '"*msvcr100"="native,builtin"'
-        '"*msvcr110"="native,builtin"'
-        '"*msvcr120"="native,builtin"'
-        '"*msvcr90"="native,builtin"'
-        '"*msxml3"="native"'
-        '"*msxml6"="native"'
-        '"*vcomp110"="native,builtin"'
-        '"*vcomp120"="native,builtin"'
-        '"atl110"="native,builtin"'
-        '"atl80"="native,builtin"'
-        '"atl90"="native,builtin"'
-        '"msvcp100"="native,builtin"'
-        '"msvcp110"="native,builtin"'
-        '"msvcp120"="native,builtin"'
-        '"msvcr100"="native,builtin"'
-        '"msvcr110"="native,builtin"'
-        '"msvcr120"="native,builtin"'
-        '"msvcr90"="native,builtin"'
-        '"msxml3"="native,builtin"'
-        '"msxml6"="native,builtin"'
-        '"vcomp110"="native,builtin"'
-        '"vcomp120"="native,builtin"' 
-    )
-    show_message "add necessary DLLs..."
-    echo " " >> "$WINE_PREFIX/user.reg"
-    for i in ${dllarray[@]};do
-        echo "$i" >> "$WINE_PREFIX/user.reg"
-    done
-    unset dllarray
-}
-
-function export_var(){
+function export_var() {
     export WINEPREFIX="$WINE_PREFIX"
-    export PATH="$WINE_PATH/bin:$PATH"
-    export LD_LIBRARY_PATH="$WINE_PATH/lib:$LD_LIBRARY_PATH"
-    export WINEDLLOVERRIDES="winemenubuilder.exe=d"
-    export WINESERVER="$WINE_PATH/bin/wineserver"
-    export WINELOADER="$WINE_PATH/bin/wine"
-    export WINEDLLPATH="$WINE_PATH/lib/wine"
-    
     show_message "wine variables exported..."
-    local wine_version=$(wine --version)
-    
-    if [ "$wine_version" == "wine-3.4" ];then
-        show_message "wine 3.4 is configured..."
-    else
-        error "wine 3.4 config is wrong"
-    fi
-}
-
-function install_wine34(){
-    local filename="wine-3.4.tgz"
-    local filepath="$CACHE_PATH/$filename" 
-    local filemd5="72b485c28e40bba2b73b0d4c0c29a15f" 
-    local filelink="http://www.playonlinux.com/wine/binaries/phoenicis/upstream-linux-amd64/PlayOnLinux-wine-3.4-upstream-linux-amd64.tar.gz"
-    download_component $filepath $filemd5 $filelink $filename 
-    tar -xzf "$filepath" -C "$WINE_PATH"
-    show_message "wine 3.4 installed..."
-    unset filename filepath filemd5 filelink
 }
 
 #parameters is [PATH] [CheckSum] [URL] [FILE NAME]
-function download_component(){
+function download_component() {
     local tout=0
     while true;do
         if [ $tout -ge 2 ];then
@@ -282,7 +216,7 @@ function download_component(){
     done    
 }
 
-function rmdir_if_exist(){
+function rmdir_if_exist() {
     if [ -d "$1" ];then
         rm -rf "$1"
         show_message "\033[0;36m$1\e[0m directory exists deleting it..."
@@ -291,7 +225,7 @@ function rmdir_if_exist(){
     show_message "create\033[0;36m $1\e[0m directory..."
 }
 
-function check_arg(){
+function check_arg() {
     while getopts "hd:c:" OPTION; do
         case $OPTION in
         d)
@@ -334,7 +268,7 @@ function check_arg(){
     fi
 }
 
-function is64(){
+function is64() {
     local arch=$(uname -m)
     if [ $arch != "x86_64"  ];then
         warning "your distro is not 64 bit"
@@ -348,7 +282,7 @@ function is64(){
 }
 
 #parameters [Message] [default flag [Y/N]]
-function ask_question(){
+function ask_question() {
     question_result=""
     if [ "$2" == "Y" ];then
         read -r -p "$1 [Y/n] " response
@@ -367,18 +301,18 @@ function ask_question(){
     fi
 }
 
-function usage(){
+function usage() {
     echo "USAGE: [-c cache directory] [-d installation directory]"
 }
 
-function save_paths(){
+function save_paths() {
     local datafile="$HOME/.psdata.txt"
     echo "$SCR_PATH" > "$datafile"
     echo "$CACHE_PATH" >> "$datafile"
     unset datafile
 }
 
-function load_paths(){
+function load_paths() {
     local datafile="$HOME/.psdata.txt"
     SCR_PATH=$(head -n 1 "$datafile")
     CACHE_PATH=$(tail -n 1 "$datafile")
