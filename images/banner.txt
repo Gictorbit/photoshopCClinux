@@ -1,16 +1,16 @@
                      ┏━━━━━━━━━━━━━━━━━━━━━━━━━┫ Photoshop CC Installer ┣━━━━━━━━━━━━━━━━━━━━━━━━┓
                      ┃                                                                           ┃
-  ███████████████████████████     1- Install photoshop CC             (using winetricks)         ┃
+  ███████████████████████████                                                                    ┃
+  ██                       ██      1- Install photoshop CC                                       ┃
+  ██  ███████▆▃            ██                                                                    ┃
+  ██  ███   ▝██▙           ██      2- Install adobe camera raw v12                               ┃
+  ██  ███    ███           ██                                                                    ┃
+  ██  ███   ▟██▛▗▟████▙    ██      3- configure virtual drive          (winecfg)                 ┃
+  ██  ███████▛  ██▋        ██                                                                    ┃
+  ██  ███       ▝▜█████▙   ██      4- uninstall photoshop                                        ┃
+  ██  ███             ██▌  ██                                                                    ┃
+  ██  ███        ▗▟████▛   ██      5- exit                                                       ┃
   ██                       ██                                                                    ┃
-  ██  ███████▆▃            ██     2- Install photoshop CC             (using custom script)      ┃
-  ██  ███   ▝██▙           ██                                                                    ┃
-  ██  ███    ███           ██     3- Install adobe camera raw v12                                ┃
-  ██  ███   ▟██▛▗▟████▙    ██                                                                    ┃
-  ██  ███████▛  ██▋        ██     4- configure virtual drive          (winecfg)                  ┃
-  ██  ███       ▝▜█████▙   ██                                                                    ┃
-  ██  ███             ██▌  ██     5- uninstall photoshop                                         ┃
-  ██  ███        ▗▟████▛   ██                                                                    ┃
-  ██                       ██     6- exit                                                        ┃
   ███████████████████████████                                                                    ┃
                      ┃                                                                           ┃
                      ┗━━━━━━━━━━━━━━━┫ https://github.com/Gictorbit/photoshopCClinux ┣━━━━━━━━━━━┛
