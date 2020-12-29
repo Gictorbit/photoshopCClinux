@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-function main(){
+function main() {
     
     #print banner
     banner
@@ -17,33 +17,27 @@ function main(){
         run_script "scripts/PhotoshopSetup.sh" "PhotoshopSetup.sh"
         ;;
     2)  
-        echo "run photoshop CC Installation..."
-        echo -n "using custom script for component installation..."
-        run_script "scripts/PhotoshopSetupCustom.sh" "PhotoshopSetupCustom.sh"
-        ;;
-    3)  
         echo -n "run adobe camera Raw installer"
         run_script "scripts/cameraRawInstaller.sh" "cameraRawInstaller.sh"
         ;;
-    4)  
+    3)  
         echo "run winecfg..."
         echo -n "open virtualdrive configuration..."
         run_script "scripts/winecfg.sh" "winecfg.sh"
         ;;
-    5)  
+    4)  
         echo -n "uninstall photoshop CC ..."
         run_script "scripts/uninstaller.sh" "uninstaller.sh"
         ;;
-    6)  
+    5)  
         echo "exit setup..."
         exitScript
         ;;
     esac
-
 }
 
 #argumaents 1=script_path 2=script_name 
-function run_script(){
+function run_script() {
     local script_path=$1
     local script_name=$2
 
@@ -58,7 +52,7 @@ function run_script(){
     unset script_path
 }
 
-function wait_second(){
+function wait_second() {
     for (( i=0 ; i<$1 ; i++ ));do
         echo -n "."
         sleep 1
@@ -66,7 +60,7 @@ function wait_second(){
     echo ""
 }
 
-function read_input(){
+function read_input() {
     while true ;do
         read -p "[choose an option]$ " choose
         if [[ "$choose" =~ (^[1-6]$) ]];then
@@ -78,11 +72,11 @@ function read_input(){
     return $choose
 }
 
-function exitScript(){
+function exitScript() {
     echo "Good Bye :)"
 }
 
-function banner(){
+function banner() {
     local banner_path="$PWD/images/banner"
     if [ -f $banner_path ];then 
         clear && echo ""
@@ -94,12 +88,12 @@ function banner(){
     unset banner_path
 }
 
-function error(){
+function error() {
     echo -e "\033[1;31merror:\e[0m $@"
     exit 1
 }
 
-function warning(){
+function warning() {
     echo -e "\033[1;33mWarning:\e[0m $@"
 }
 
