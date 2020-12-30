@@ -8,7 +8,7 @@ function main(){
     
     setup_log "================| script executed |================"
 
-    #is64
+    is64
 
     #make sure aria2c and wine package is already installed 
     package_installed aria2c
