@@ -1,5 +1,5 @@
-1- change check package installed function implementation
-2- change photoshop.desktop icon to orginal png icon
+(done) 1- change check package installed function implementation
+(done) 2- change photoshop.desktop icon to orginal png icon
 3- remove sudo access
-4- add download links to json file instead hard coding
+4- add download links to json file instead hard coding (mirror)
 

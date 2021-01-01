@@ -5,7 +5,7 @@ Exec=bash pspath/launcher/launcher.sh
 Type=Application
 StartupNotify=true
 Comment=Photoshop CC for Linux
-Icon=photoshop
+Icon=photoshopicon
 Name[fr_FR]=Photoshop CC
 
 

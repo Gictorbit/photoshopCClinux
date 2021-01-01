@@ -69,21 +69,30 @@ function launcher() {
 
     #create desktop entry
     local desktop_entry="$PWD/photoshop.desktop"
-    local desktop_entry_dest="/usr/share/applications/photoshop.desktop"
+    local desktop_entry_dest="/home/$USER/.local/share/applications/photoshop.desktop"
     
     if [ -f "$desktop_entry" ];then
         show_message "desktop entry detected..."
+       
         #delete desktop entry if exists
         if [ -f "$desktop_entry_dest" ];then
             show_message "desktop entry exist deleted..."
-            sudo rm "$desktop_entry_dest"
+            rm "$desktop_entry_dest"
         fi
-        sudo cp "$desktop_entry" "/usr/share/applications" || error "can't copy desktop entry"
-        sudo sed -i "s|pspath|$SCR_PATH|g" "$desktop_entry_dest" || error "can't edit desktop entry"
+        cp "$desktop_entry" "$desktop_entry_dest" || error "can't copy desktop entry"
+        sed -i "s|pspath|$SCR_PATH|g" "$desktop_entry_dest" || error "can't edit desktop entry"
     else
         error "desktop entry Not Found"
     fi
 
+    #change photoshop icon of desktop entry
+    local entry_icon="../images/AdobePhotoshop-icon.png"
+    local launch_icon="$launcher_dest/AdobePhotoshop-icon.png"
+
+    cp "$entry_icon" "$launcher_dest" 
+    sed -i "s|photoshopicon|$launch_icon|g" "$desktop_entry_dest" || error "can't edit desktop entry"
+    sed -i "s|photoshopicon|$launch_icon|g" "$launcher_dest/launcher.sh" || error "can't edit launcher script"
+    
     #create photoshop command
     show_message "create photoshop command..."
     if [ -f "/usr/local/bin/photoshop" ];then
