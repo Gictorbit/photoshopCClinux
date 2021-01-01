@@ -37,7 +37,7 @@ main(){
     if [ -f "$ENTRY_PATH" ];then
         echo "remove desktop entry...."
         echo "$SCR_PATH"
-        sudo rm "$ENTRY_PATH" || error2 "couldn't remove desktop entry"
+        rm "$ENTRY_PATH" || error2 "couldn't remove desktop entry"
     else
         echo "desktop entry Not Found!"
     fi
