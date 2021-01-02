@@ -6,6 +6,8 @@ Type=Application
 StartupNotify=true
 Comment=Photoshop CC for Linux
 Icon=photoshopicon
+StartupWMClass=photoshop.exe
 Name[fr_FR]=Photoshop CC
+
 
 
