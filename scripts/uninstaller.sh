@@ -2,7 +2,7 @@
 
 source "sharedFuncs.sh"
 
-main(){    
+main() {    
 
     CMD_PATH="/usr/local/bin/photoshop"
     ENTRY_PATH="/home/$USER/.local/share/applications/photoshop.desktop"
@@ -61,7 +61,7 @@ main(){
 }
 
 #parameters [Message] [default flag [Y/N]]
-function ask_question(){
+function ask_question() {
     result=""
     if [ "$2" == "Y" ];then
         read -r -p "$1 [Y/n] " response

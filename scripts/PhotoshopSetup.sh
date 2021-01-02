@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 source "sharedFuncs.sh"
 
-function main(){
+function main() {
     
     mkdir -p $SCR_PATH
     mkdir -p $CACHE_PATH

@@ -68,7 +68,7 @@ or
 when no options are given, the installer script will use the default path, 
 the uninstaller script and others will detect your custom path so there is no problem,
 I recommend using the `-d` option  and having the default cache directory.
-this feature is currently being tested, and will later be added to `setup.sh`
+this feature is currently being tested, and will be added to `setup.sh` later
 
 
 <div align="center" class="tip" markdown="1" style>
