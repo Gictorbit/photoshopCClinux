@@ -22,7 +22,7 @@ function main() {
     #create new wine prefix for photoshop
     rmdir_if_exist $WINE_PREFIX
     
-    #export necessary variable for wine 3.4
+    #export necessary variable for wine
     export_var
     
     #config wine prefix and install mono and gecko automatic

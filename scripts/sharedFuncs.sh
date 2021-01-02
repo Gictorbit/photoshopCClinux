@@ -89,7 +89,7 @@ function launcher() {
     local entry_icon="../images/AdobePhotoshop-icon.png"
     local launch_icon="$launcher_dest/AdobePhotoshop-icon.png"
 
-    cp "$entry_icon" "$launcher_dest" 
+    cp "$entry_icon" "$launcher_dest" || error "can't copy icon image"
     sed -i "s|photoshopicon|$launch_icon|g" "$desktop_entry_dest" || error "can't edit desktop entry"
     sed -i "s|photoshopicon|$launch_icon|g" "$launcher_dest/launcher.sh" || error "can't edit launcher script"
     
