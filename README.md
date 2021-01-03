@@ -13,7 +13,7 @@ and sets some necessary components up for the best performance
 ## :rocket: Features
 * downloads necessary components and installs them (`vcrun`, `atmlib`, `msxml`...)
 * downloads `photoshop.exe` installer and installs it automatically
-* creates photoshop commands and a desktop entry
+* creates photoshop command and a desktop entry
 * wine dark mode
 * supports graphic cards like (`intel`, `Nvidia`)
 * saves the downloaded files in your cache directory
@@ -141,5 +141,8 @@ chmod +x uninstaller.sh
 
 ---
 <a href="https://poshtiban.com">
-<img src="images/poshtibancom.png" width="30%">
+<img src="images/poshtibancom.png" width="25%"> 
+</a>
+<a href="https://github.com/Gictorbit/illustratorCClinux">
+<img src="https://github.com/Gictorbit/illustratorCClinux/raw/master/images/AiIcon.png" width="9%">
 </a>
