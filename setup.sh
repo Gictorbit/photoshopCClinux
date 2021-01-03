@@ -63,10 +63,10 @@ function wait_second() {
 function read_input() {
     while true ;do
         read -p "[choose an option]$ " choose
-        if [[ "$choose" =~ (^[1-6]$) ]];then
+        if [[ "$choose" =~ (^[1-5]$) ]];then
             break
         fi
-        warning "choose a number between 1 to 6"
+        warning "choose a number between 1 to 5"
     done
 
     return $choose

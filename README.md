@@ -3,12 +3,11 @@
 
 ![screenshot](images/Screenshot.png)
 
-![GitHub repo size](https://img.shields.io/github/license/Gictorbit/photoshopCClinux?style=flat) ![Tested on arch](https://img.shields.io/badge/Tested%20on-Archlinux-brightgreen)
-![GitHub stars](https://img.shields.io/github/stars/Gictorbit/photoshopCClinux?style=sad) ![rep size](https://img.shields.io/github/repo-size/gictorbit/photoshopCClinux) ![bash](https://img.shields.io/badge/bash-5.0.11-yellowgreen)
+![wine version](https://img.shields.io/badge/wine-5.22-red) ![Tested on arch](https://img.shields.io/badge/Tested%20on-Archlinux-brightgreen) ![GitHub stars](https://img.shields.io/github/stars/Gictorbit/photoshopCClinux) ![rep size](https://img.shields.io/github/repo-size/gictorbit/photoshopCClinux) ![bash](https://img.shields.io/badge/bash-5.0-yellowgreen)
 </div>
 
 # Photoshop CC v19 installer for Linux
-This bash script installs Photoshop CC version 19 on your Linux machine using wine behind the scene
+This bash script install Photoshop CC version 19 on your Linux machine using wine behind the scene
 and sets some necessary components up for the best performance
 
 ## :rocket: Features
@@ -38,6 +37,8 @@ sudo pacman -S wine aria2 winetricks
 3- make sure you have enough storage in your `/home` partition about `5 GiB`
 > 1 GiB will be free after installation
 
+also you can install illustrator in diffrent directory
+
 4- make sure you have an internet connection and about 1.5 Gib traffic to download photoshop and its components
 
 ## :computer: Installation
@@ -59,7 +60,7 @@ chmod +x setup.sh
 you can use `-d` to specify the installation path, and `-c` for the cache directory.
 for example:
 ```bash
-./PhotoshopSetupCustom.sh -d /mnt/myfiles/photoshop
+./PhotoshopSetup.sh -d /mnt/myfiles/photoshop
 ```
 or
 ```bash
@@ -80,22 +81,7 @@ during installation please pay attention to the script messages
 
 > **NOTE :** make sure OS version in wine is on windows 7
 
-
-<details>
-<summary>more details</summary>
-
-for components installation you have two options, using winetricks or using custom way.
-
-### component installation using winetricks (Recommended)
-for installing photoshop just run the bash script with following command, it downloads and installs photoshop include its component using winetricks and configures wine automatically
-
-```bash
-chmod +x PhotoshopSetup.sh
-./PhotoshopSetup.sh
-```
-
-</details>
-
+installer script use `winetricks` to install necessary components
 
 ## :wine_glass: wineprefix Configuration
 if you need to configure the wineprefix of photoshop you can use `winecfg.sh` script just run the command below
