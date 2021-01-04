@@ -132,6 +132,7 @@ function install_photoshopSE() {
     local filename="photoshopCC-V19.1.6-2018x64.tgz"
     local filemd5="b63f6ed690343ee12b6195424f94c33f"
     local filelink="https://victor.poshtiban.io/p/gictor/photoshopCC/photoshopCC-V19.1.6-2018x64.tgz"
+    # local filelink="http://127.0.0.1:8080/photoshopCC-V19.1.6-2018x64.tgz"
     local filepath="$CACHE_PATH/$filename"
 
     download_component $filepath $filemd5 $filelink $filename
@@ -217,7 +218,8 @@ function download_component() {
             fi
         else   
             show_message "downloading $4 ..."
-            aria2c -c -x 8 -d $CACHE_PATH -o $4 $3
+            # aria2c -c -x 8 -d $CACHE_PATH -o $4 $3
+            wget $3 -P $CACHE_PATH
             if [ $? -eq 0 ];then
                 notify-send "$4 download completed" -i "download"
             fi
