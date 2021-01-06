@@ -114,54 +114,6 @@ function launcher() {
     unset desktop_entry desktop_entry_dest launcher_path launcher_dest
 }
 
-function replacement() {
-    local filename="replacement.tgz"
-    local filemd5="6441a8e77c082897a99c2b7b588c9ac4"
-    local filelink="https://victor.poshtiban.io/p/gictor/photoshopCC/replacement.tgz"
-    local filepath="$CACHE_PATH/$filename"
-
-    download_component $filepath $filemd5 $filelink $filename
-
-    mkdir "$RESOURCES_PATH/replacement"
-    show_message "extract replacement component..."
-    tar -xzf $filepath -C "$RESOURCES_PATH/replacement"
-
-    local replacefiles=("IconResources.idx" "PSIconsHighRes.dat" "PSIconsLowRes.dat")
-    local destpath="$WINE_PREFIX/drive_c/users/$USER/PhotoshopSE/Resources"
-    
-    for f in "${replacefiles[@]}";do
-        local sourcepath="$RESOURCES_PATH/replacement/$f"
-        cp -f "$sourcepath" "$destpath" || error "cant copy replacement $f file..."
-    done
-
-    show_message "replace component compeleted..."
-    unset filename filemd5 filelink filepath
-}
-
-function install_photoshopSE() {
-    local filename="photoshopCC-V19.1.6-2018x64.tgz"
-    local filemd5="b63f6ed690343ee12b6195424f94c33f"
-    # local filelink="https://victor.poshtiban.io/p/gictor/photoshopCC/photoshopCC-V19.1.6-2018x64.tgz"
-    local filelink="http://127.0.0.1:8080/photoshopCC-V19.1.6-2018x64.tgz"
-    local filepath="$CACHE_PATH/$filename"
-
-    download_component $filepath $filemd5 $filelink $filename
-
-    mkdir "$RESOURCES_PATH/photoshopCC"
-    show_message "extract photoshop..."
-    tar -xzf "$filepath" -C "$RESOURCES_PATH/photoshopCC"
-
-    echo "===============| photoshop CC v19 |===============" >> "$SCR_PATH/wine-error.log"
-    show_message "install photoshop..."
-    show_message "\033[1;33mPlease don't change default Destination Folder\e[0m"
-
-    wine "$RESOURCES_PATH/photoshopCC/photoshop_cc.exe" &>> "$SCR_PATH/wine-error.log" || error "sorry something went wrong during photoshop installation"
-
-    notify-send "photoshop installed successfully" -i "photoshop"
-    show_message "photoshopCC V19 x64 installed..."
-    unset filename filemd5 filelink filepath
-}
-
 function set_dark_mod() {
     echo " " >> "$WINE_PREFIX/user.reg"
     local colorarray=(
