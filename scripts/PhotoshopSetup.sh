@@ -10,8 +10,7 @@ function main() {
 
     is64
 
-    #make sure aria2c and wine package is already installed 
-    # package_installed aria2c
+    #make sure wine and winetricks package is already installed
     package_installed wine
     package_installed md5sum
     package_installed winetricks

@@ -51,8 +51,9 @@ main() {
         ask_question "would you delete cache directory?" "N"
         if [ "$result" == "yes" ];then
             rm -rf "$CACHE_PATH" || error2 "couldn't remove cache directory"
+            show_message2 "cache directory removed."
         else
-            echo "nice, you can copy component data and use them later for photoshop installation"
+            echo "nice, you can use downloaded data later for photoshop installation"
         fi
     else
         echo "cache directory Not Found!"    
