@@ -109,6 +109,9 @@ function install_photoshopSE() {
     show_message "\033[1;33mPlease don't change default Destination Folder\e[0m"
 
     wine "$RESOURCES_PATH/photoshopCC/photoshop_cc.exe" &>> "$SCR_PATH/wine-error.log" || error "sorry something went wrong during photoshop installation"
+    
+    show_message "removing useless helper.exe plugin to avoid errors"
+    rm "$WINE_PREFIX/drive_c/users/$USER/PhotoshopSE/Required/Plug-ins/Spaces/Adobe Spaces Helper.exe"
 
     notify-send "photoshop installed successfully" -i "photoshop"
     show_message "photoshopCC V19 x64 installed..."
