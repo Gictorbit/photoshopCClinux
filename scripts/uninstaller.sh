@@ -7,7 +7,7 @@ main() {
     CMD_PATH="/usr/local/bin/photoshop"
     ENTRY_PATH="/home/$USER/.local/share/applications/photoshop.desktop"
     
-    notify-send "photoshop uninstaller started" -i "photoshop"
+    notify-send "Photoshop CC" "photoshop uninstaller started" -i "photoshop"
 
     ask_question "you are uninstalling photoshop cc v19 are you sure?" "N"
     if [ $result == "no" ];then

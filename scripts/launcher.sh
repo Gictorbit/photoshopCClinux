@@ -4,7 +4,7 @@ if [ $# -ne 0 ];then
     exit 1
 fi
 
-notify-send "Photoshop CC started." -i "photoshopicon"
+notify-send "Photoshop CC" "Photoshop CC launched." -i "photoshopicon"
 
 SCR_PATH="pspath"
 CACHE_PATH="pscache"

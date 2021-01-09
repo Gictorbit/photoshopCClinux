@@ -186,14 +186,14 @@ function download_component() {
                 aria2c -c -x 8 -d "$CACHE_PATH" -o $4 $3
                 
                 if [ $? -eq 0 ];then
-                    notify-send "$4 download completed" -i "download"
+                    notify-send "Photoshop CC" "$4 download completed" -i "download"
                 fi
             else
                 show_message "using wget to download $4"
                 wget "$3" -P "$CACHE_PATH"
                 
                 if [ $? -eq 0 ];then
-                    notify-send "$4 download completed" -i "download"
+                    notify-send "Photoshop CC" "$4 download completed" -i "download"
                 fi
             fi
             ((tout++))

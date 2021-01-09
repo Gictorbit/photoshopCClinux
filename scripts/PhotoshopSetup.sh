@@ -113,7 +113,7 @@ function install_photoshopSE() {
     show_message "removing useless helper.exe plugin to avoid errors"
     rm "$WINE_PREFIX/drive_c/users/$USER/PhotoshopSE/Required/Plug-ins/Spaces/Adobe Spaces Helper.exe"
 
-    notify-send "photoshop installed successfully" -i "photoshop"
+    notify-send "Photoshop CC" "photoshop installed successfully" -i "photoshop"
     show_message "photoshopCC V19 x64 installed..."
     unset filename filemd5 filelink filepath
 }
