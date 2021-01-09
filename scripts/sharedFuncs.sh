@@ -180,14 +180,20 @@ function download_component() {
             fi
         else   
             show_message "downloading $4 ..."
-            pkgres=$(package_installed aria2c "summary")
-            if [ "$pkgres" == "true" ];then
+            ariapkg=$(package_installed aria2c "summary")
+            curlpkg=$(package_installed curl "summary")
+            
+            if [ "$ariapkg" == "true" ];then
                 show_message "using aria2c to download $4"
                 aria2c -c -x 8 -d "$CACHE_PATH" -o $4 $3
                 
                 if [ $? -eq 0 ];then
                     notify-send "Photoshop CC" "$4 download completed" -i "download"
                 fi
+
+            elif [ "$curlpkg" == "true" ];then
+                show_message "using curl to download $4"
+                curl $3 -o $1
             else
                 show_message "using wget to download $4"
                 wget "$3" -P "$CACHE_PATH"
@@ -198,7 +204,7 @@ function download_component() {
             fi
             ((tout++))
         fi
-    done   
+    done
 }
 
 function rmdir_if_exist() {
