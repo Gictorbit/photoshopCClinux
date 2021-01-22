@@ -7,12 +7,12 @@
 </div>
 
 # Photoshop CC v19 installer for Linux
-This bash script install Photoshop CC version 19 on your Linux machine using wine behind the scene
+This bash script helps you to install Photoshop CC version 19 on your Linux machine using wine behind the scene
 and sets some necessary components up for the best performance
 
 ## :rocket: Features
 * downloads necessary components and installs them (`vcrun`, `atmlib`, `msxml`...)
-* downloads `photoshop.exe` installer and installs it automatically
+* downloads `photoshop.exe` installer
 * creates photoshop command and a desktop entry
 * wine dark mode
 * supports graphic cards like (`intel`, `Nvidia`)
@@ -36,7 +36,7 @@ sudo pacman -S wine winetricks
 3- make sure you have enough storage in your `/home` partition about `5 GiB`
 > 1 GiB will be free after installation
 
-also you can install illustrator in diffrent directory
+also you can install photoshop in diffrent directory
 
 4- make sure you have an internet connection and about 1.5 Gib traffic to download photoshop and its components
 
