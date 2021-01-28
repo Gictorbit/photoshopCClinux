@@ -21,15 +21,18 @@ function package_installed() {
                 exit 5
             else
                 declare -A osInfo;
-                osInfo[/etc/redhat-release]=yum upgrade && yum install
-                osInfo[/etc/arch-release]=pacman -Syu && pacman -S
-                osInfo[/etc/SuSE-release]=zypper update && zypper install
-                osInfo[/etc/debian_version]=apt-get update && apt-get install
+                osInfo[/etc/redhat-release]=yum
+                osInfo[/etc/SuSE-release]=zypper
+                osInfo[/etc/debian_version]=apt-get
 
                 for f in ${!osInfo[@]}
                 do
                     if [[ -f $f ]];then
-                        sudo ${osInfo[$f]} $1
+						sudo ${osInfo[$f]} update
+						sudo ${osInfo[$f]} install $1
+					else
+						sudo pacman -Syu
+						sudo pacman -S $1
                     fi
                 done
             fi
