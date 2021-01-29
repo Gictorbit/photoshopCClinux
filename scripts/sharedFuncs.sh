@@ -30,12 +30,14 @@ function package_installed() {
                     if [[ -f $f ]];then
 						sudo ${osInfo[$f]} update
 						sudo ${osInfo[$f]} install $1
-					else
-						sudo pacman -Syu
-						sudo pacman -S $1
+						return
                     fi
                 done
-            fi
+                # setup for arch-based systems
+            	sudo pacman -Syu
+                sudo pacman -S coreutils
+				sudo pacman -S $1
+			fi
         fi
     fi
 }
