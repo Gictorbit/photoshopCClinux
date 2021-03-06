@@ -109,6 +109,7 @@ function launcher() {
         show_message "photoshop command exist deleted..."
         sudo rm "/usr/local/bin/photoshop"
     fi
+    sudo mkdir -p "/usr/local/bin"
     sudo ln -s "$SCR_PATH/launcher/launcher.sh" "/usr/local/bin/photoshop" || error "can't create photoshop command"
 
     unset desktop_entry desktop_entry_dest launcher_path launcher_dest
