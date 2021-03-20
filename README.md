@@ -25,13 +25,14 @@ and sets some necessary components up for the best performance
 
 2-make sure the following packages are already installed on your Linux distro
 * `wine`
+* `wine32`
 * `winetricks`
 * `md5sum`
 
 
 if they are not already installed you can install them using your package manager for example in arch Linux
 ```bash
-sudo pacman -S wine winetricks
+sudo pacman -S wine winetricks wine32
 ``` 
 3- make sure you have enough storage in your `/home` partition about `5 GiB`
 > 1 GiB will be free after installation
