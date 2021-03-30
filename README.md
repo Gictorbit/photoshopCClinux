@@ -32,7 +32,7 @@ and sets some necessary components up for the best performance
 
 if they are not already installed you can install them using your package manager for example in arch Linux
 ```bash
-sudo pacman -S wine winetricks wine32
+sudo pacman -S wine winetricks
 ``` 
 3- make sure you have enough storage in your `/home` partition about `5 GiB`
 > 1 GiB will be free after installation
