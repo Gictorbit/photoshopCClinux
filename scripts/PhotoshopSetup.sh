@@ -35,14 +35,14 @@ function main() {
     else
         error "prefix config failed :("
     fi
+        
+    if [ -f "$WINE_PREFIX/user.reg" ];then
+        #add dark mod
+        set_dark_mod
+    else
+        error "user.reg Not Found :("
+    fi
     
-   if [ -f "$WINE_PREFIX/user.reg" ];then
-       #add dark mod
-       set_dark_mod
-   else
-       error "user.reg Not Found :("
-   fi
-   
     #create resources directory 
     rmdir_if_exist $RESOURCES_PATH
 
