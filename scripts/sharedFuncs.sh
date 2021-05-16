@@ -182,7 +182,7 @@ function download_component() {
         else   
             show_message "downloading $4 ..."
             ariapkg=$(package_installed aria2c "summary")
-            curlpkg=$(package_installed curl "summary")
+            wget --progress=bar --tries=0 pkg=$(package_installed wget --progress=bar --tries=0  "summary")
             
             if [ "$ariapkg" == "true" ];then
                 show_message "using aria2c to download $4"
@@ -192,9 +192,9 @@ function download_component() {
                     notify-send "Photoshop CC" "$4 download completed" -i "download"
                 fi
 
-            elif [ "$curlpkg" == "true" ];then
-                show_message "using curl to download $4"
-                curl $3 -o $1
+            elif [ "$wget --progress=bar --tries=0 pkg" == "true" ];then
+                show_message "using wget --progress=bar --tries=0  to download $4"
+                wget --progress=bar --tries=0  $3 -o $1
             else
                 show_message "using wget to download $4"
                 wget "$3" -P "$CACHE_PATH"
