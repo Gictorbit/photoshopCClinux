@@ -15,6 +15,7 @@ function main() {
     package_installed wine64
     package_installed md5sum
     package_installed winetricks
+    package_installed wget
 
     RESOURCES_PATH="$SCR_PATH/resources"
     WINE_PREFIX="$SCR_PATH/prefix"
@@ -35,12 +36,12 @@ function main() {
         error "prefix config failed :("
     fi
     
-    if [ -f "$WINE_PREFIX/user.reg" ];then
-        #add dark mod
-        set_dark_mod
-    else
-        error "user.reg Not Found :("
-    fi
+   if [ -f "$WINE_PREFIX/user.reg" ];then
+       #add dark mod
+       set_dark_mod
+   else
+       error "user.reg Not Found :("
+   fi
    
     #create resources directory 
     rmdir_if_exist $RESOURCES_PATH
