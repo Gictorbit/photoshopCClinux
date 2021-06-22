@@ -34,7 +34,8 @@ function main() {
     else
         error "prefix config failed :("
     fi
-    
+
+    sleep 5
     if [ -f "$WINE_PREFIX/user.reg" ];then
         #add dark mod
         set_dark_mod
