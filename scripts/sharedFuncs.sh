@@ -10,16 +10,34 @@ function package_installed() {
         else
             echo "false"
         fi
-    else    
+    else
         if [ "$pkginstalled" -eq 0 ];then
             show_message "package\033[1;36m $1\e[0m is installed..."
         else
-            warning "package\033[1;33m $1\e[0m is not installed.\nplease make sure it's already installed"
-            ask_question "would you continue?" "N"
+            warning "package\033[1;33m $1\e[0m is not installed."
+            ask_question "would you like to install it now?" "Y"
             if [ "$question_result" == "no" ];then
                 echo "exit..."
                 exit 5
-            fi
+            else
+                declare -A osInfo;
+                osInfo[/etc/redhat-release]=yum
+                osInfo[/etc/SuSE-release]=zypper
+                osInfo[/etc/debian_version]=apt-get
+
+                for f in ${!osInfo[@]}
+                do
+                    if [[ -f $f ]];then
+						sudo ${osInfo[$f]} update
+						sudo ${osInfo[$f]} install $1
+						return
+                    fi
+                done
+                # setup for arch-based systems
+            	sudo pacman -Syu
+                sudo pacman -S coreutils
+				sudo pacman -S $1
+			fi
         fi
     fi
 }
