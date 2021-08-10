@@ -17,7 +17,7 @@ and sets up necessary components for the best performance.
 * Wine Dark mode
 * Supports graphic cards like (`Intel` and `NVIDIA`)
 * Saves the downloaded files in your cache directory
-* It's free and you will not need any license key
+* It's free and you will not need a license key
 * Works on any Linux distribution
 
 ## :warning: Requirements
