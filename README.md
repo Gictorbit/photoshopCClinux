@@ -58,7 +58,7 @@ chmod +x setup.sh
 ./setup.sh
 ```
 
-You can use `-d` to specify the installation path, and `-c` for the cache directory.
+You can use the `-d` flag to specify the installation path, and the `-c` flag for the cache directory.
 For example:
 ```bash
 ./PhotoshopSetup.sh -d /mnt/myfiles/photoshop
@@ -72,7 +72,7 @@ or
 
 When no options are given, the installer script will use the default path, 
 The uninstaller script will detect your custom path so there is no problem,
-I recommend using the `-d` option  and having the default cache directory.
+I recommend using the `-d` flag  and having the default cache directory.
 This feature is currently being tested, and will be added to `setup.sh` later
 
 
@@ -87,7 +87,7 @@ During the installation please pay attention to the script messages
 
 The installer script uses `winetricks` to install necessary components
 
-## :wine_glass: Wineprefix Configuration
+## :wine_glass: WinePrefix Configuration
 
 If you need to configure the wineprefix of photoshop you can use `winecfg.sh` script just run the command below:
 ```bash
