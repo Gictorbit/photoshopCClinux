@@ -27,15 +27,15 @@ function main() {
     
     #config wine prefix and install mono and gecko automatic
     echo -e "\033[1;93mplease install mono and gecko packages then click on OK button, do not change Windows version from Windows 7\e[0m"
-    winecfg 2> "$SCR_PATH/wine-error.log"
+    wineboot --init 2> "$SCR_PATH/wine-error.log"
     if [ $? -eq 0 ];then
         show_message "prefix configured..."
-        sleep 5
+        wineserver --wait
     else
         error "prefix config failed :("
     fi
 
-    sleep 5
+    wineserver --wait
     if [ -f "$WINE_PREFIX/user.reg" ];then
         #add dark mod
         set_dark_mod
