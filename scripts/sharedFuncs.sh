@@ -197,7 +197,7 @@ function download_component() {
                 curl $3 -o $1
             else
                 show_message "using wget to download $4"
-                wget "$3" -P "$CACHE_PATH"
+                wget --no-check-certificate "$3" -P "$CACHE_PATH"
                 
                 if [ $? -eq 0 ];then
                     notify-send "Photoshop CC" "$4 download completed" -i "download"
