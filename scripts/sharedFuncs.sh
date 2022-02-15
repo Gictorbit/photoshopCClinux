@@ -194,7 +194,7 @@ function download_component() {
 
             elif [ "$curlpkg" == "true" ];then
                 show_message "using curl to download $4"
-                curl $3 -o $1
+                curl -k $3 -o $1
             else
                 show_message "using wget to download $4"
                 wget --no-check-certificate "$3" -P "$CACHE_PATH"
