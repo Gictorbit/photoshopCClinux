@@ -66,7 +66,7 @@ or
 ```bash
 ./PhotoshopSetup.sh -d /mnt/myfiles/photoshop -c /mnt/cache
 ```
-when no options are given, the installer script will use the default path, 
+when no options are given, the installer script will use the default path,
 the uninstaller script and others will detect your custom path so there is no problem,
 I recommend using the `-d` option  and having the default cache directory.
 this feature is currently being tested, and will be added to `setup.sh` later
@@ -80,6 +80,16 @@ this feature is currently being tested, and will be added to `setup.sh` later
 during installation please pay attention to the script messages
 
 > **NOTE :** make sure OS version in wine is on windows 7
+
+> **WARNING :** you need to edit the registry of your wineprefix, otherwise it won't have proper functionality.
+
+execute this:
+
+```bash
+WINEPREFIX=$HOME/.photoshopCCV19/prefix winetricks regedit
+```
+
+in opened window go to HKEY_CURRENT_USER/Software/Adobe/CSXS.8 then click Edit -> New -> String Value. Name it PlayerDebugMode and set it to 1
 
 installer script use `winetricks` to install necessary components
 
@@ -117,7 +127,7 @@ another useful adobe software is `camera raw` if you want to work with it beside
 chmod +x cameraRawInstaller.sh
 ./cameraRawInstaller.sh
 ```
-then restart photoshop.you can open it from 
+then restart photoshop.you can open it from
 `Edit >>Preferences >> Camera Raw`
 
 > **_NOTE1:_** the size of camera raw installation file is about 400MB
