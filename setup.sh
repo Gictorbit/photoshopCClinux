@@ -1,100 +1,98 @@
 #!/usr/bin/env bash
 
+# Define global variables
+readonly BANNER_PATH="$PWD/images/banner"
+readonly PHOTOSHOP_CC_SCRIPT="scripts/PhotoshopSetup.sh"
+readonly CAMERA_RAW_SCRIPT="scripts/cameraRawInstaller.sh"
+readonly WINECFG_SCRIPT="scripts/winecfg.sh"
+readonly UNINSTALL_SCRIPT="scripts/uninstaller.sh"
+
+# Define the main function
 function main() {
-    
-    #print banner
-    banner
+    # Print banner
+    print_banner
 
-    #read inputs
-    read_input
-    let answer=$?
+    # Read user input
+    local option=$(read_input)
 
-    case "$answer" in
-
+    # Execute the chosen option
+    case "$option" in
     1)  
-        echo "run photoshop CC Installation..."
-        echo -n "using winetricks for component installation..."
-        run_script "scripts/PhotoshopSetup.sh" "PhotoshopSetup.sh"
+        echo "Running Photoshop CC installation script..."
+        echo -n "Using winetricks for component installation..."
+        run_script "$PHOTOSHOP_CC_SCRIPT"
         ;;
     2)  
-        echo -n "run adobe camera Raw installer"
-        run_script "scripts/cameraRawInstaller.sh" "cameraRawInstaller.sh"
+        echo "Running Adobe Camera Raw installer script..."
+        run_script "$CAMERA_RAW_SCRIPT"
         ;;
     3)  
-        echo "run winecfg..."
-        echo -n "open virtualdrive configuration..."
-        run_script "scripts/winecfg.sh" "winecfg.sh"
+        echo "Running winecfg script..."
+        echo -n "Opening virtualdrive configuration..."
+        run_script "$WINECFG_SCRIPT"
         ;;
     4)  
-        echo -n "uninstall photoshop CC ..."
-        run_script "scripts/uninstaller.sh" "uninstaller.sh"
+        echo "Running Photoshop CC uninstaller script..."
+        run_script "$UNINSTALL_SCRIPT"
         ;;
     5)  
-        echo "exit setup..."
-        exitScript
+        echo "Exiting setup..."
+        exit_script
         ;;
     esac
 }
 
-#argumaents 1=script_path 2=script_name 
+# Define the function that runs a script
+# Arguments:
+#   - $1: The path to the script to be run
 function run_script() {
     local script_path=$1
-    local script_name=$2
 
-    wait_second 5
-    if [ -f "$script_path" ];then
-        echo "$script_path Found..."
+    # Wait for 5 seconds
+    wait_seconds 5
+
+    # Check if the script exists
+    if [ -f "$script_path" ]; then
+        echo "$script_path found..."
+        # Make the script executable
         chmod +x "$script_path"
+        # Change directory to the scripts directory and run the script
+        cd "./scripts/" && bash "$script_path"
     else
-        error "$script_name not Found..."    
+        error "$script_path not found..."    
     fi
-    cd "./scripts/" && bash $script_name
     unset script_path
 }
 
-function wait_second() {
-    for (( i=0 ; i<$1 ; i++ ));do
+# Define the function that waits for a specified number of seconds
+# Arguments:
+#   - $1: The number of seconds to wait
+function wait_seconds() {
+    for (( i=0; i<$1; i++ )); do
         echo -n "."
         sleep 1
     done
     echo ""
 }
 
+# Define the function that reads user input
 function read_input() {
-    while true ;do
-        read -p "[choose an option]$ " choose
-        if [[ "$choose" =~ (^[1-5]$) ]];then
-            break
-        fi
-        warning "choose a number between 1 to 5"
-    done
+    # Read the user's choice
+    read -p "[Choose an option]$ " choose
 
-    return $choose
-}
-
-function exitScript() {
-    echo "Good Bye :)"
-}
-
-function banner() {
-    local banner_path="$PWD/images/banner"
-    if [ -f $banner_path ];then 
-        clear && echo ""
-        cat $banner_path
-        echo ""
+    # Check if the user's choice is a number between 1 and 5
+    if [[ "$choose" =~ (^[1-5]$) ]]; then
+        # Return the user's choice
+        echo "$choose"
     else
-        error "banner not Found..."
+        warning "Choose a number between 1 and 5"
+        # Call the function recursively until the user enters a valid choice
+        read_input
     fi
-    unset banner_path
 }
 
-function error() {
-    echo -e "\033[1;31merror:\e[0m $@"
-    exit 1
+# Define the function that exits the script
+function exit_script() {
+    echo "Goodbye :)"
+    exit 0
 }
-
-function warning() {
-    echo -e "\033[1;33mWarning:\e[0m $@"
-}
-
-main
