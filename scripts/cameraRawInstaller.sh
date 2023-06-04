@@ -21,7 +21,7 @@ function check_ps_installed() {
 
 function install_cameraRaw() {
     local filename="CameraRaw_12_2_1.exe"
-    local filemd5="b6a6b362e0c159be5ba1d0eb1ebd0054"
+    local filemd5="b63f6ed690343ee12b6195424f94c33f"
     local filelink="https://download.adobe.com/pub/adobe/photoshop/cameraraw/win/12.x/CameraRaw_12_2_1.exe"
     local filepath="$CACHE_PATH/$filename"
 
