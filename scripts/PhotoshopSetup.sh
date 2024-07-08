@@ -72,7 +72,7 @@ function main() {
 function replacement() {
     local filename="replacement.tgz"
     local filemd5="6441a8e77c082897a99c2b7b588c9ac4"
-    local filelink="https://victor.poshtiban.io/p/gictor/photoshopCC/replacement.tgz"
+    local filelink="https://drive.usercontent.google.com/download?id=1AD_a6XfaiFY_eivEMdCajvjxRC-1P-NY&export=download&authuser=0"
     local filepath="$CACHE_PATH/$filename"
 
     download_component $filepath $filemd5 $filelink $filename
@@ -96,8 +96,7 @@ function replacement() {
 function install_photoshopSE() {
     local filename="photoshopCC-V19.1.6-2018x64.tgz"
     local filemd5="b63f6ed690343ee12b6195424f94c33f"
-    local filelink="https://victor.poshtiban.io/p/gictor/photoshopCC/photoshopCC-V19.1.6-2018x64.tgz"
-    # local filelink="http://127.0.0.1:8080/photoshopCC-V19.1.6-2018x64.tgz"
+    local filelink="https://drive.usercontent.google.com/download?id=1axKU4pLD6eju_mX0cRZ_J-uWhHo6Cg8j&export=download&authuser=0&confirm=t&uuid=ca6aee1e-cbb9-4bad-b7f9-eac09e96afff&at=APZUnTWe2QdRhKfQPjc1p6WloTjH%3A1720429612478"
     local filepath="$CACHE_PATH/$filename"
 
     download_component $filepath $filemd5 $filelink $filename
