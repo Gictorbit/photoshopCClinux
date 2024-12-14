@@ -15,4 +15,4 @@ WINE_PREFIX="$SCR_PATH/prefix"
 
 export WINEPREFIX="$WINE_PREFIX"
 
-wine64 "$SCR_PATH/prefix/drive_c/users/$USER/PhotoshopSE/Photoshop.exe"
+wine "$SCR_PATH/prefix/drive_c/users/$USER/PhotoshopSE/Photoshop.exe"

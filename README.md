@@ -9,6 +9,10 @@
 # Photoshop CC v19 installer for Linux
 This bash script helps you to install Photoshop CC version 19 on your Linux machine using wine behind the scene
 and sets some necessary components up for the best performance
+## Update in 14th December, 2024 
+- *silent* during winetricks
+- use local files ( replacement & photoshopCC ) instead downloading from host.
+- use `wine` instead of `wine64` in both `launcher.sh` & install bash scripts.
 
 ## :rocket: Features
 * downloads necessary components and installs them (`vcrun`, `atmlib`, `msxml`...)

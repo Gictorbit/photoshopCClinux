@@ -47,7 +47,7 @@ function main() {
     rmdir_if_exist $RESOURCES_PATH
 
     # winetricks atmlib corefonts fontsmooth=rgb gdiplus vcrun2008 vcrun2010 vcrun2012 vcrun2013 vcrun2015 atmlib msxml3 msxml6 gdiplus
-    winetricks atmlib fontsmooth=rgb vcrun2008 vcrun2010 vcrun2012 vcrun2013 atmlib msxml3 msxml6
+    winetricks -q atmlib fontsmooth=rgb vcrun2008 vcrun2010 vcrun2012 vcrun2013 atmlib msxml3 msxml6
     
     #install photoshop
     sleep 3
@@ -70,16 +70,11 @@ function main() {
 }
 
 function replacement() {
-    local filename="replacement.tgz"
-    local filemd5="6441a8e77c082897a99c2b7b588c9ac4"
-    local filelink="https://victor.poshtiban.io/p/gictor/photoshopCC/replacement.tgz"
-    local filepath="$CACHE_PATH/$filename"
-
-    download_component $filepath $filemd5 $filelink $filename
+    local filelink="/home/$USER/Downloads/photoshopCC/replacement.tgz"
 
     mkdir "$RESOURCES_PATH/replacement"
-    show_message "extract replacement component..."
-    tar -xzf $filepath -C "$RESOURCES_PATH/replacement"
+    show_message "extract replacement component -> $RESOURCES_PATH/replacement..."
+    tar -xzf $filelink -C "$RESOURCES_PATH/replacement"
 
     local replacefiles=("IconResources.idx" "PSIconsHighRes.dat" "PSIconsLowRes.dat")
     local destpath="$WINE_PREFIX/drive_c/users/$USER/PhotoshopSE/Resources"
@@ -90,34 +85,26 @@ function replacement() {
     done
 
     show_message "replace component compeleted..."
-    unset filename filemd5 filelink filepath
 }
 
 function install_photoshopSE() {
-    local filename="photoshopCC-V19.1.6-2018x64.tgz"
-    local filemd5="b63f6ed690343ee12b6195424f94c33f"
-    local filelink="https://victor.poshtiban.io/p/gictor/photoshopCC/photoshopCC-V19.1.6-2018x64.tgz"
-    # local filelink="http://127.0.0.1:8080/photoshopCC-V19.1.6-2018x64.tgz"
-    local filepath="$CACHE_PATH/$filename"
-
-    download_component $filepath $filemd5 $filelink $filename
-
+    local filelink="/home/$USER/Downloads/photoshopCC/photoshopCC-V19.1.6-2018x64.tgz"
+    
     mkdir "$RESOURCES_PATH/photoshopCC"
-    show_message "extract photoshop..."
-    tar -xzf "$filepath" -C "$RESOURCES_PATH/photoshopCC"
+    show_message "extract photoshop -> $RESOURCES_PATH/photoshopCC..."
+    tar -xzf "$filelink" -C "$RESOURCES_PATH/photoshopCC"
 
     echo "===============| photoshop CC v19 |===============" >> "$SCR_PATH/wine-error.log"
     show_message "install photoshop..."
     show_message "\033[1;33mPlease don't change default Destination Folder\e[0m"
 
-    wine64 "$RESOURCES_PATH/photoshopCC/photoshop_cc.exe" &>> "$SCR_PATH/wine-error.log" || error "sorry something went wrong during photoshop installation"
+    wine "$RESOURCES_PATH/photoshopCC/photoshop_cc.exe" &>> "$SCR_PATH/wine-error.log" || error "sorry something went wrong during photoshop installation"
     
     show_message "removing useless helper.exe plugin to avoid errors"
     rm "$WINE_PREFIX/drive_c/users/$USER/PhotoshopSE/Required/Plug-ins/Spaces/Adobe Spaces Helper.exe"
 
     notify-send "Photoshop CC" "photoshop installed successfully" -i "photoshop"
     show_message "photoshopCC V19 x64 installed..."
-    unset filename filemd5 filelink filepath
 }
 
 check_arg $@
