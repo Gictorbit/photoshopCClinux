@@ -72,7 +72,7 @@ function main() {
 function replacement() {
     local filename="replacement.tgz"
     local filemd5="6441a8e77c082897a99c2b7b588c9ac4"
-    local filelink="https://victor.poshtiban.io/p/gictor/photoshopCC/replacement.tgz"
+    local filelink="https://drive.google.com/uc?export=download&id=1h0JBJbYyg9s5xQu4ytU0ZIGk_dadlfi6"
     local filepath="$CACHE_PATH/$filename"
 
     download_component $filepath $filemd5 $filelink $filename
@@ -96,11 +96,11 @@ function replacement() {
 function install_photoshopSE() {
     local filename="photoshopCC-V19.1.6-2018x64.tgz"
     local filemd5="b63f6ed690343ee12b6195424f94c33f"
-    local filelink="https://victor.poshtiban.io/p/gictor/photoshopCC/photoshopCC-V19.1.6-2018x64.tgz"
+    local filelink="https://drive.google.com/uc?export=download&id=1ZRt8_p2v_Ahdh7_DHkMxBevGD7l4Ev8J&confirm=t"
     # local filelink="http://127.0.0.1:8080/photoshopCC-V19.1.6-2018x64.tgz"
     local filepath="$CACHE_PATH/$filename"
 
-    download_component $filepath $filemd5 $filelink $filename
+    curl -L -o "$filepath" "$filelink"
 
     mkdir "$RESOURCES_PATH/photoshopCC"
     show_message "extract photoshop..."
