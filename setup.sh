@@ -77,7 +77,7 @@ function exitScript() {
 }
 
 function banner() {
-    local banner_path="$PWD/images/banner"
+    local banner_path="$PWD/images/banner.txt"
     if [ -f $banner_path ];then 
         clear && echo ""
         cat $banner_path
